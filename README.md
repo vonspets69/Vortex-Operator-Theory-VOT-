@@ -1,4 +1,5 @@
 First public release: April 2026
+Author: Matti S. Kärki
 
 # Vortex Operator Theory (VOT)
 
