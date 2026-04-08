@@ -88,19 +88,6 @@ At present, VOT should be read as a **research program** with the following open
 3. Derive the required trace identity from the operator model.
 4. Clarify whether the resulting spectral picture can be made fully rigorous.
 
-## Repository contents
-
-Suggested structure:
-
-```text
-.
-├── README.md
-├── vot_preprint.html
-├── vot_brief_en.html
-├── notes/
-├── numerics/
-└── figures/
-```
 
 ## Author
 
@@ -108,24 +95,12 @@ Suggested structure:
 
 If you cite or discuss this work, please attribute the repository and author clearly.
 
-## License suggestion
+## License
+This work is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
 
-For a theory text or conceptual framework, a good default is:
-
-- **CC BY 4.0** if you want reuse with attribution.
-
-If you later add code, you may keep the text under CC BY 4.0 and license code separately.
-
-## Citation suggestion
-
-If you want stronger timestamped authorship, connect this repository to **Zenodo** and generate a DOI for releases.
-
-A simple citation format could be:
-
-```text
-Matti S. Kärki, Vortex Operator Theory (VOT): A Dynamic Spectral Framework for the Riemann Hypothesis, GitHub repository, year.
-```
 
 ## Disclaimer
 
 This repository is intended for mathematical discussion, critique, and development. It presents a speculative operator framework motivated by spectral interpretations of the zeta zeros and should not be represented as a proven result.
+
+
