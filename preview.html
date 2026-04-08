@@ -3,503 +3,324 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vortex Operator Theory (VOT): Unified Operator Program and Empirical Vortex Architecture</title>
+<title>VOT Formal Core XI–XIV: Rigorous Spectral Core</title>
 <style>
   :root{
-    --fg:#111;
-    --muted:#555;
-    --line:#ddd;
-    --bg:#fff;
-    --soft:#f7f7f7;
-    --accent:#1f4b99;
+    --fg:#111; --muted:#555; --line:#ddd; --bg:#fff; --soft:#f7f7f7; --accent:#1f4b99;
   }
   html,body{background:var(--bg); color:var(--fg); margin:0; padding:0;}
-  body{font-family:"Times New Roman", Times, serif; line-height:1.55; font-size:18px;}
-  .page{max-width:980px; margin:0 auto; padding:40px 28px 72px;}
-  h1,h2,h3,h4{font-weight:600; line-height:1.25; margin:1.2em 0 0.45em;}
-  h1{font-size:2rem; text-align:center; margin-top:0.2em;}
+  body{font-family:"Times New Roman", Times, serif; line-height:1.58; font-size:18px;}
+  .page{max-width:980px; margin:0 auto; padding:36px 28px 72px;}
+  h1,h2,h3{font-weight:600; line-height:1.25; margin:1.2em 0 0.45em;}
+  h1{font-size:2rem; text-align:center; margin-top:0.1em;}
   h2{font-size:1.35rem; border-bottom:1px solid var(--line); padding-bottom:0.18em;}
   h3{font-size:1.08rem;}
   p{margin:0.6em 0;}
-  .authors,.meta,.abstract-title{text-align:center;}
-  .authors{font-size:1.05rem; margin-top:0.8em;}
-  .meta{font-size:0.95rem; color:var(--muted); margin-top:0.2em;}
-  .abstract{margin:1.5em auto 1.8em; padding:1em 1.2em; border:1px solid var(--line); background:var(--soft);}
-  .abstract-title{font-weight:700; margin-bottom:0.4em;}
-  .toc{border:1px solid var(--line); padding:1em 1.2em; background:#fcfcfc; margin:1.6em 0 2em;}
-  .toc h3{margin-top:0;}
-  .toc ol{margin:0.2em 0 0 1.2em;}
-  .eq{display:block; margin:1em auto; padding:0.2em 0.5em; text-align:center; font-family:"Cambria Math","Times New Roman",serif; white-space:pre-wrap;}
-  .defn,.remark,.prop,.hypo,.empirical,.warning,.program,.status,.bridgebox{border:1px solid var(--line); padding:0.8em 1em; margin:1em 0; background:#fbfbfb;}
+  .meta{text-align:center; font-size:0.95rem; color:var(--muted);}
+  .eq{display:block; margin:1em auto; text-align:center; white-space:pre-wrap; font-family:"Cambria Math","Times New Roman",serif;}
+  .box,.thm,.remark,.goal,.warning{border:1px solid var(--line); background:#fbfbfb; padding:0.85em 1em; margin:1em 0;}
   .label{font-weight:700; color:var(--accent);}
-  ul,ol{margin:0.5em 0 0.7em 1.4em;}
-  li{margin:0.22em 0;}
+  ul,ol{margin:0.45em 0 0.7em 1.35em;}
+  li{margin:0.25em 0;}
+  .small{font-size:0.95rem; color:var(--muted);}
   code,pre{font-family:"Courier New", Courier, monospace; font-size:0.92em;}
   pre{background:#fafafa; border:1px solid var(--line); padding:1em; overflow:auto;}
-  .table-wrap{overflow:auto; margin:1em 0;}
-  table{border-collapse:collapse; width:100%; font-size:0.98rem;}
-  th,td{border:1px solid var(--line); padding:0.45em 0.55em; vertical-align:top;}
-  th{background:#f3f3f3;}
-  .center{text-align:center;}
-  .small{font-size:0.95rem; color:var(--muted);}
-  .foot{margin-top:3em; padding-top:1em; border-top:1px solid var(--line); color:var(--muted); font-size:0.94rem;}
 </style>
 </head>
 <body>
 <div class="page">
 
-  <h1>Vortex Operator Theory (VOT): Unified Operator Program and Empirical Vortex Architecture</h1>
-  <div class="authors">Research preprint draft</div>
-  <div class="meta">HTML manuscript • unified version combining operator ansatz and empirical vortex architecture</div>
+<h1>Vortex Operator Theory (VOT)<br>Formal Core XI–XIV: Rigorous Spectral Core</h1>
+<div class="meta">HTML draft • operator-theoretic core extracted from the VOT research program</div>
 
-  <div class="abstract">
-    <div class="abstract-title">Abstract</div>
-    <p>
-      We present a unified draft of <strong>Vortex Operator Theory</strong> (VOT), a research program for modeling the nontrivial zeros of the Riemann zeta function through arithmetic dynamics, local spectral geometry, and a vortex-based mechanism language. The present document has two layers. The first is an <strong>operator program</strong>: primes drive a dynamical field \(A_0(t)\), this field enters an operator \(H\), and the long-term goal is to connect the spectrum of \(H\) to the zeta zeros. The second is an <strong>empirical vortex architecture</strong>: a multi-layer, multi-arc, event-based system built from localized spectra, purity surfaces, drifting paths, and a shell / 0-point / flow ontology.
-    </p>
-    <p>
-      The main conceptual claim is that zeta zeros appear, within this framework, to be <strong>mechanistically heterogeneous</strong>. Some behave as stable shell-contact events, others as shell-approach events, and a minority require local rescue structures. A hybrid model combining a global scaffold with local precision/rescue corrections outperforms purely local models in current scaling experiments.
-    </p>
-    <p>
-      This preprint does <strong>not</strong> claim a proof of the Riemann Hypothesis. Its purpose is to state the program clearly, show how the original operator ansatz and the newer empirical vortex architecture fit together, and identify where the decisive mathematical gap still lies.
-    </p>
-  </div>
-
-  <div class="toc">
-    <h3>Contents</h3>
-    <ol>
-      <li>Introduction</li>
-      <li>The Original Operator Program</li>
-      <li>Prime-Driven Signal and Dynamic Field</li>
-      <li>Local Spectral Geometry</li>
-      <li>Purity Surface and Path Extraction</li>
-      <li>Event Ontology</li>
-      <li>Vortex Ontology: Shell, 0-Point, Flow</li>
-      <li>Hybrid Architecture</li>
-      <li>Zero Classification Layer</li>
-      <li>Empirical Scaling Summary</li>
-      <li>How the Old and New Versions Fit Together</li>
-      <li>Current Mathematical Gap</li>
-      <li>Next Research Program</li>
-      <li>Conclusion</li>
-    </ol>
-  </div>
-
-  <h2>1. Introduction</h2>
+<div class="goal">
+  <div class="label">Purpose.</div>
   <p>
-    Let the nontrivial zeros of the Riemann zeta function be written as
+    This note isolates the first rigorous spectral layer of Vortex Operator Theory. The aim is not yet to prove the Riemann Hypothesis, but to identify a mathematically clean core: a self-adjoint operator generated from a VOT-derived potential, together with a precise statement of the gap that still remains.
   </p>
-  <div class="eq">ρ = β + iγ.</div>
+</div>
+
+<h2>1. Spectral Objective</h2>
+<p>
+  The VOT program produces a local purity functional \(\mathcal P(T,\omega)\), shells, 0-points, and event structures. The next formal question is whether these objects can be linked to a genuine self-adjoint operator. The target is an operator of Schrödinger type:
+</p>
+<div class="eq">
+H_{\mathrm{eff}} = -\frac{d^2}{dT^2} + V(T).
+</div>
+<p>
+  The long-term interpretive goal is that the relevant spectral data of \(H_{\mathrm{eff}}\) should encode the zero structure extracted empirically from the VOT architecture.
+</p>
+
+<h2>2. Hilbert Space and Base Operator</h2>
+<p>
+  Let \(I=[T_{\min},T_{\max}]\subset \mathbb R\) be a compact interval. We work in the Hilbert space
+</p>
+<div class="eq">\mathcal H = L^2(I).</div>
+<p>
+  Define the differential operator
+</p>
+<div class="eq">
+H_{\mathrm{eff}}u = -u'' + V(T)u
+</div>
+<p>
+  with Dirichlet boundary conditions
+</p>
+<div class="eq">
+u(T_{\min})=u(T_{\max})=0.
+</div>
+
+<div class="remark">
+  <div class="label">Why this setup?</div>
   <p>
-    The Riemann Hypothesis asserts that all such zeros satisfy
+    This is the simplest rigorous starting point. On a finite interval, classical Sturm–Liouville and Kato–Rellich theory give a clean self-adjointness result under very mild assumptions on the potential.
   </p>
-  <div class="eq">β = 1/2.</div>
+</div>
+
+<h2>3. Minimal Conditions on the Potential</h2>
+<p>
+  For the first rigorous layer, assume:
+</p>
+<ul>
+  <li>\(V \in L^\infty(I)\),</li>
+  <li>\(V(T)\in \mathbb R\) for all \(T\in I\).</li>
+</ul>
+<p>
+  Equivalently, \(V\) is a bounded real multiplication operator on \(L^2(I)\).
+</p>
+
+<h2>4. Quadratic Form</h2>
+<p>
+  Associate to \(H_{\mathrm{eff}}\) the quadratic form
+</p>
+<div class="eq">
+q[u] = \int_I \left(|u'(T)|^2 + V(T)|u(T)|^2\right)\,dT.
+</div>
+<p>
+  Since \(V\in L^\infty(I)\), the form is well-defined on \(H_0^1(I)\). If \(V\ge -C\), then the shifted form
+</p>
+<div class="eq">
+q_C[u] = q[u] + (C+1)\|u\|_{L^2(I)}^2
+</div>
+<p>
+  is positive and closed.
+</p>
+
+<h2>5. Theorem A: Self-Adjointness on a Finite Interval</h2>
+<div class="thm">
+  <div class="label">Theorem A.</div>
   <p>
-    The VOT program begins from the idea that zeta zeros may admit a dynamical interpretation: instead of appearing only as static points in the critical strip, they may arise as outputs of an arithmetic resonance system driven by prime data.
-  </p>
-
-  <div class="hypo">
-    <div class="label">Guiding Hypothesis.</div>
-    <p>
-      The nontrivial zeta zeros may be organized by a constrained arithmetic flow whose local structures are better modeled as evolving resonance objects than as isolated static targets.
-    </p>
-  </div>
-
-  <p>
-    Historically, the project started from a relatively direct operator ansatz. During development, however, the numerical and structural work showed that a one-mechanism picture is too crude. The present unified version keeps the original operator program intact, but embeds it inside a richer empirical architecture.
-  </p>
-
-  <h2>2. The Original Operator Program</h2>
-  <p>
-    The original VOT proposal can be summarized schematically as
-  </p>
-  <div class="eq"><strong>primes → K(t) → A₀(t) → H → spectrum ≈ {γ<sub>n</sub>}.</strong></div>
-
-  <p>
-    The operator ansatz is
-  </p>
-  <div class="eq">H = -\,i\frac{d}{dt} + \frac12 + A_0(t).</div>
-
-  <p>
-    The intended interpretation is:
-  </p>
-  <ul>
-    <li>\(-i\,d/dt\) is a free scaling or transport generator,</li>
-    <li>\(1/2\) marks the critical-line shift,</li>
-    <li>\(A_0(t)\) is an arithmetic dynamical field generated by prime events.</li>
-  </ul>
-
-  <div class="program">
-    <div class="label">Long-term Operator Goal.</div>
-    <p>
-      The operator layer aims, in the long run, at a trace or determinant relation of the form
-    </p>
-    <div class="eq">\mathrm{Tr}(e^{-itH}) \leadsto \sum_{p,k}\log p\,\delta(t-k\log p),</div>
-    <p>
-      and ultimately a formal bridge toward
-    </p>
-    <div class="eq">\det(H-E) \propto \xi\!\left(\frac12+iE\right).</div>
-    <p>
-      This bridge is <strong>not proved</strong> in the current work. It remains a programmatic target.
-    </p>
-  </div>
-
-  <h2>3. Prime-Driven Signal and Dynamic Field</h2>
-  <p>
-    Prime powers enter through the von Mangoldt-type event stream
-  </p>
-  <div class="eq">K(t)=\sum_{p,k}\log p\,\delta(t-k\log p).</div>
-
-  <p>
-    The original dynamic field equation is
-  </p>
-  <div class="eq">\frac{dA_0}{dt}=-\alpha A_0+\beta\sin(\omega t)\,K(t).</div>
-
-  <p>
-    In explicit form this gives
+    Let \(I=[T_{\min},T_{\max}]\) be a compact interval and let \(V\in L^\infty(I)\) be real-valued. Then the operator
   </p>
   <div class="eq">
-A_0(t)=\beta\sum_{p,k:\,k\log p\le t}\log p\,e^{-\alpha(t-k\log p)}\sin(\omega k\log p).
+  H_{\mathrm{eff}} = -\frac{d^2}{dT^2} + V(T)
   </div>
-
   <p>
-    In later empirical work this signal was generalized to multiple channels:
+    with Dirichlet boundary conditions is self-adjoint on \(L^2(I)\). Moreover, it has compact resolvent and therefore purely discrete spectrum.
+  </p>
+</div>
+
+<h3>Proof sketch</h3>
+<ul>
+  <li>The Dirichlet Laplacian \(H_0=-d^2/dT^2\) on \(I\) is self-adjoint.</li>
+  <li>The multiplication operator by \(V\) is bounded and self-adjoint because \(V\in L^\infty(I)\) and is real-valued.</li>
+  <li>Hence \(H_{\mathrm{eff}}=H_0+V\) is self-adjoint by the bounded perturbation theorem (or Kato–Rellich in this bounded case).</li>
+  <li>On a finite interval, the Dirichlet Laplacian has compact resolvent, and bounded perturbations preserve compact resolvent.</li>
+</ul>
+
+<div class="remark">
+  <div class="label">Interpretation.</div>
+  <p>
+    This is the first genuinely rigorous spectral statement available inside the VOT program: once a bounded real potential \(V(T)\) is defined, the corresponding effective operator is mathematically well-posed.
+  </p>
+</div>
+
+<h2>6. How to Construct the Potential from VOT</h2>
+<p>
+  The empirical VOT framework produces a two-variable purity functional \(\mathcal P(T,\omega)\). A naïve reduction would define
+</p>
+<div class="eq">
+\omega^*(T)=\arg\max_\omega \mathcal P(T,\omega), \qquad F(T)=\mathcal P(T,\omega^*(T)),
+</div>
+<p>
+  and then set
+</p>
+<div class="eq">V(T)=-F(T).</div>
+<p>
+  However, this direct maximizer can fail to be unique or continuous. To avoid this, a smoothed reduction is preferable.
+</p>
+
+<h2>7. Smoothed Reduction via Log-Sum-Exp</h2>
+<p>
+  Let \(\Omega\subset\mathbb R\) be a compact frequency window and assume \(\mathcal P\in C^2(I\times\Omega)\). For \(\beta>0\), define
+</p>
+<div class="eq">
+F_\beta(T)
+=
+\frac{1}{\beta}
+\log\int_\Omega e^{\beta \mathcal P(T,\omega)}\,d\omega.
+</div>
+<p>
+  Then define the effective VOT potential by
+</p>
+<div class="eq">
+V_\beta(T)=-F_\beta(T).
+</div>
+
+<h2>8. Theorem B: Regularity of the Smoothed Potential</h2>
+<div class="thm">
+  <div class="label">Theorem B.</div>
+  <p>
+    Let \(I,\Omega\) be compact intervals and let \(\mathcal P\in C^2(I\times\Omega)\) be real-valued. Then
   </p>
   <div class="eq">
-A_0^{(M)}(T)=\sum_{m=1}^{M}\sum_{\tau\le T} c_m\log p\,e^{-\alpha_m(T-\tau)}\sin(\omega_m\tau+\phi_m).
+  F_\beta(T)=\frac{1}{\beta}\log\int_\Omega e^{\beta \mathcal P(T,\omega)}\,d\omega
   </div>
-
-  <div class="remark">
-    <div class="label">Unifying Interpretation.</div>
-    <p>
-      The old \(A_0\)-field is best interpreted now as the <strong>global arithmetic driver</strong>. The newer multi-component versions are not replacements of the original idea, but refinements that expose multiple local mechanisms hidden inside the same arithmetic forcing.
-    </p>
-  </div>
-
-  <h2>4. Local Spectral Geometry</h2>
   <p>
-    The signal is analyzed through localized time-frequency structure. For center time \(T\) and frequency variable \(ω\), one studies
+    belongs to \(C^2(I)\). Consequently,
+  </p>
+  <div class="eq">V_\beta(T)=-F_\beta(T)\in C^2(I)\subset L^\infty(I),</div>
+  <p>
+    and the operator
   </p>
   <div class="eq">
-S(T,ω)=\int A_0(t)\,e^{iω t}\exp\!\left(-\frac{(t-T)^2}{2\sigma^2}\right)dt.
+    H_\beta = -\frac{d^2}{dT^2}+V_\beta(T)
   </div>
-
   <p>
-    The amplitude surface \(|S(T,ω)|\) is not taken as a final score, but as the raw spectral geometry out of which shells, flows, and local resonance events are extracted.
+    is self-adjoint on \(L^2(I)\) with Dirichlet boundary conditions and has purely discrete spectrum.
   </p>
+</div>
 
-  <h2>5. Purity Surface and Path Extraction</h2>
+<h3>Proof sketch</h3>
+<ul>
+  <li>The map \((T,\omega)\mapsto e^{\beta \mathcal P(T,\omega)}\) is \(C^2\) on the compact set \(I\times\Omega\).</li>
+  <li>Differentiation under the integral sign is justified.</li>
+  <li>The logarithm is smooth on positive numbers, and the integral is strictly positive.</li>
+  <li>Hence \(F_\beta\in C^2(I)\), so \(V_\beta\) is bounded and real-valued.</li>
+  <li>Apply Theorem A.</li>
+</ul>
+
+<h2>9. Spectral Localization Heuristic</h2>
+<p>
+  Once \(V_\beta\) is well-defined, one may study the relation between its minima and the low-lying eigenfunctions of \(H_\beta\). If \(F_\beta\) has sharp local maxima at times \(T_1,\dots,T_m\), then \(V_\beta\) has corresponding local minima near those points.
+</p>
+
+<div class="thm">
+  <div class="label">Localization Principle (heuristic).</div>
   <p>
-    One of the main lessons of development was that <strong>frequency correctness matters more than raw strength</strong>. This led to the use of a <strong>relative purity surface</strong> that rewards concentration and cleanup while strongly penalizing leakage.
+    If \(V_\beta\) has separated nondegenerate local minima, then the low-lying eigenfunctions of \(H_\beta\) localize near those minima.
   </p>
+</div>
 
+<p>
+  In VOT language, this suggests the first principled spectral reading:
+</p>
+<ul>
+  <li>0-points of the purity geometry create local maxima of \(F_\beta\),</li>
+  <li>these become local minima of \(V_\beta\),</li>
+  <li>the corresponding operator develops localized spectral structure near those regions.</li>
+</ul>
+
+<h2>10. Relation to the Original Operator Ansatz</h2>
+<p>
+  The older VOT layer used the arithmetic field directly in a first-order operator:
+</p>
+<div class="eq">
+H = -i\frac{d}{dt} + \frac12 + A_0(t).
+</div>
+<p>
+  The present rigorous spectral core should be viewed as an effective reduction:
+</p>
+<div class="eq">
+A_0
+\;\Longrightarrow\;
+\mathcal P(T,\omega)
+\;\Longrightarrow\;
+F_\beta(T)
+\;\Longrightarrow\;
+V_\beta(T)
+\;\Longrightarrow\;
+H_\beta.
+</div>
+
+<div class="remark">
+  <div class="label">Interpretive bridge.</div>
   <p>
-    In generic form, one studies
+    The first-order operator \(H\) belongs to the original programmatic layer. The second-order effective operator \(H_\beta\) belongs to the current rigorous spectral layer. The two are not yet proven equivalent. The present strategy is to formalize \(H_\beta\) first, and only afterwards attempt to reconstruct it from the original arithmetic operator framework.
+  </p>
+</div>
+
+<h2>11. The Current Mathematical Gap</h2>
+<div class="warning">
+  <div class="label">Decisive unresolved point.</div>
+  <p>
+    The VOT program does not yet prove that the spectrum of \(H_\beta\) reproduces the imaginary parts \(\gamma_n\) of the nontrivial zeta zeros. Nor does it yet prove that the effective potential \(V_\beta\) constructed from the purity surface is canonically forced by the arithmetic data.
+  </p>
+</div>
+
+<p>
+  Thus the present state is:
+</p>
+<ul>
+  <li><strong>rigorous:</strong> construction of a self-adjoint effective operator from a smooth bounded VOT potential;</li>
+  <li><strong>heuristic:</strong> interpretation of its spectral minima/localization as zero-generating structures;</li>
+  <li><strong>open:</strong> exact spectral identification with \(\{\gamma_n\}\).</li>
+</ul>
+
+<h2>12. Strongest Current Theorem Candidate</h2>
+<div class="thm">
+  <div class="label">Core Theorem Candidate.</div>
+  <p>
+    Let \(I,\Omega\) be compact intervals and let \(\mathcal P\in C^2(I\times\Omega)\) be real-valued. Define
   </p>
   <div class="eq">
-P(T,ω)=
-a_1\,\mathrm{energy}(T,ω)
-+a_2\,\mathrm{concentration}(T,ω)
-+a_3\,\max(\mathrm{cleanup}(T,ω),0)
--a_4\,\mathrm{leakage}(T,ω)
-+a_5\,\mathrm{asymmetry}(T,ω).
+  F_\beta(T)=\frac{1}{\beta}\log\int_\Omega e^{\beta \mathcal P(T,\omega)}\,d\omega,
+  \qquad
+  V_\beta(T)=-F_\beta(T),
   </div>
-
   <p>
-    From this surface, drifting key paths are extracted by dynamic programming:
+    and
   </p>
   <div class="eq">
-DP[i,j]=\max_k\left(DP[i-1,k]+P[i,j]-\lambda|j-k|\right).
+  H_\beta=-\frac{d^2}{dT^2}+V_\beta(T)
   </div>
-
   <p>
-    The result is a family of local frequency trajectories rather than a single global track. This marked a decisive departure from the early single-score viewpoint.
+    on \(L^2(I)\) with Dirichlet boundary conditions. Then \(H_\beta\) is a self-adjoint operator with purely discrete spectrum.
   </p>
+</div>
 
-  <h2>6. Event Ontology</h2>
-  <p>
-    The local paths generate structured events. In the current formulation the main event classes are:
-  </p>
-  <ul>
-    <li><strong>Anchor</strong>: high-purity, relatively stable shell contact;</li>
-    <li><strong>Bridge</strong>: weaker but directed approach toward shell contact;</li>
-    <li><strong>Transition</strong>: local structural switch.</li>
-  </ul>
+<p>
+  This theorem does not solve RH, but it gives a precise and rigorous operator-theoretic nucleus inside the VOT program.
+</p>
 
-  <p>
-    Event selection is not point-based. Instead the model evaluates <strong>zero-zones</strong>: unions of event intervals with widths. A zero is counted as explained when it lies within a given distance threshold from the event union.
-  </p>
+<h2>13. Next Rigorous Steps</h2>
+<ol>
+  <li>Prove a localization theorem in the language of VOT shells and 0-points.</li>
+  <li>Show that the minima structure of \(V_\beta\) is stable under admissible perturbations of \(\mathcal P\).</li>
+  <li>Formulate a spectral approximation statement of the form
+    <div class="eq">\lambda_n(H_\beta)\approx \gamma_n.</div>
+  </li>
+  <li>Attempt a reconstruction link from the original operator
+    <div class="eq">H = -i\frac{d}{dt}+\frac12+A_0(t)</div>
+    to the effective operator \(H_\beta\).</li>
+</ol>
 
-  <div class="remark">
-    <div class="label">Important Rule.</div>
-    <p>
-      Bridges are not accepted automatically. A bridge must contribute genuine new explanatory value. Transitions are usually treated as triggers or supports, not as standalone explanatory events.
-    </p>
-  </div>
+<h2>14. Conclusion</h2>
+<p>
+  The rigorous spectral core of VOT is now clear at the first level: the program can canonically produce a self-adjoint effective operator from a smooth bounded purity-derived potential. This is the first nontrivial formal core that survives independently of the more heuristic empirical architecture.
+</p>
+<p>
+  The central unsolved problem remains the true RH step:
+</p>
+<div class="eq">
+\mathrm{spec}(H_\beta) \stackrel{?}{=} \{\gamma_n\}.
+</div>
+<p>
+  Until that step is proved, VOT remains a serious but incomplete research program rather than a proof.
+</p>
 
-  <h2>7. Vortex Ontology: Shell, 0-Point, Flow</h2>
-  <p>
-    The project originally used the word <em>vortex</em> as an intuition. Later, as the numerical architecture became more complex, a deliberate effort was made to restore this ontology explicitly so that the model would not collapse into a mere detector.
-  </p>
-
-  <div class="defn">
-    <div class="label">Definition 7.1 (Shell).</div>
-    <p>
-      A shell is a local resonance layer in the time-frequency structure. Shells are not arbitrary bins; they represent coherent local bands supporting partial dynamical consistency.
-    </p>
-  </div>
-
-  <div class="defn">
-    <div class="label">Definition 7.2 (0-Point).</div>
-    <p>
-      A 0-point is a local attractor-like center governing approach, locking, or failure. It is a dynamical center, not merely a point where the raw signal numerically vanishes.
-    </p>
-  </div>
-
-  <div class="defn">
-    <div class="label">Definition 7.3 (Flow).</div>
-    <p>
-      Flow is the directed local motion of a resonance structure relative to its shell and 0-point. It indicates approach, contact, transition, or breakdown.
-    </p>
-  </div>
-
-  <p>
-    To make this explicit, events are assigned derived vortex quantities such as:
-  </p>
-  <ul>
-    <li><code>shell_id</code>,</li>
-    <li><code>shell_stability</code>,</li>
-    <li><code>zero_point_approach_score</code>,</li>
-    <li><code>zero_point_lock_score</code>,</li>
-    <li><code>shell_transition_score</code>,</li>
-    <li><code>vortex_role</code>,</li>
-    <li><code>vortex_valid</code>.</li>
-  </ul>
-
-  <p>
-    The main vortex roles are:
-  </p>
-  <ul>
-    <li><strong>shell_contact</strong>,</li>
-    <li><strong>shell_approach</strong>,</li>
-    <li><strong>shell_transition</strong>,</li>
-    <li><strong>shell_failure</strong>.</li>
-  </ul>
-
-  <h2>8. Hybrid Architecture</h2>
-  <p>
-    A key empirical discovery was that an earlier, simpler model version—called here <strong>V1</strong>—scaled better to higher zeros than later purely local adaptive models. This led to the current best direction:
-  </p>
-  <div class="eq"><strong>final model = V1 backbone + local precision/rescue correction.</strong></div>
-
-  <p>
-    The hybrid currently consists of four modes:
-  </p>
-  <ul>
-    <li><strong>V1</strong>: global scaffold / long-range backbone;</li>
-    <li><strong>precision</strong>: sharp local correction;</li>
-    <li><strong>rescue</strong>: flexible correction for difficult regions;</li>
-    <li><strong>local_rescue</strong>: tightly constrained patch for rare hard clusters.</li>
-  </ul>
-
-  <div class="bridgebox">
-    <div class="label">Theoretical Role of the Hybrid.</div>
-    <p>
-      The old operator program suggests what the global structure should eventually explain. The newer empirical architecture reveals that the actual resonance field is multi-mechanistic. The hybrid is therefore the current best compromise: it preserves a global arithmetic scaffold while allowing limited local mechanism diversity.
-    </p>
-  </div>
-
-  <h2>9. Zero Classification Layer</h2>
-  <p>
-    To move beyond raw coverage, a <strong>Zero Classification Layer</strong> was introduced. Each zero is assigned:
-  </p>
-  <ul>
-    <li>a mode: <code>V1</code>, <code>precision</code>, <code>rescue</code>, or <code>local_rescue</code>,</li>
-    <li>a vortex role: <code>shell_contact</code>, <code>shell_approach</code>, <code>shell_transition</code>, or <code>shell_failure</code>,</li>
-    <li>a shell label: <code>S1</code>–<code>S5</code>.</li>
-  </ul>
-
-  <div class="empirical">
-    <div class="label">Current 20-Zero Classification Summary.</div>
-    <ul>
-      <li>Modes: precision 14, rescue 4, local_rescue 2.</li>
-      <li>Roles: shell_contact 17, shell_approach 3.</li>
-      <li>The shell_approach subgroup is small but persistent, suggesting a distinct dynamical class rather than noise.</li>
-    </ul>
-  </div>
-
-  <p>
-    This is one of the strongest conceptual results obtained so far: <strong>zeros are not homogeneous in the VOT framework.</strong>
-  </p>
-
-  <h2>10. Empirical Scaling Summary</h2>
-  <p>
-    A staged scaling test was carried out at 20, 100, 300, and 1000 zeros. The best large-scale performance among currently explored variants came from the V1-backed hybrid.
-  </p>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Number of zeros</th>
-          <th class="center">Coverage @ 1.0</th>
-          <th class="center">Coverage @ 1.5</th>
-          <th class="center">Interpretive note</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>20</td>
-          <td class="center">17</td>
-          <td class="center">18</td>
-          <td>Strong local behavior; hard low cluster can be repaired by local rescue.</td>
-        </tr>
-        <tr>
-          <td>100</td>
-          <td class="center">62</td>
-          <td class="center">70</td>
-          <td>Hybrid remains stronger than either precision or rescue alone.</td>
-        </tr>
-        <tr>
-          <td>300</td>
-          <td class="center">151</td>
-          <td class="center">178</td>
-          <td>Global scaffold becomes increasingly important.</td>
-        </tr>
-        <tr>
-          <td>1000</td>
-          <td class="center">248</td>
-          <td class="center">308</td>
-          <td>Still far from complete; nevertheless materially better than purely local flexible models.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="warning">
-    <div class="label">Caution.</div>
-    <p>
-      These numerical results do not amount to a proof, a validated prediction theorem, or a complete large-scale theory. They indicate only that the V1-backed hybrid organizes the observed low-to-mid-height structure better than several simpler variants explored during the project.
-    </p>
-  </div>
-
-  <h2>11. How the Old and New Versions Fit Together</h2>
-  <p>
-    The old and new versions of VOT should not be seen as competing theories. They answer different questions.
-  </p>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Layer</th>
-          <th>Old version</th>
-          <th>New version</th>
-          <th>Unified reading</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Prime input</td>
-          <td>\(K(t)\), von Mangoldt stream</td>
-          <td>Prime-event signal still central</td>
-          <td>Shared arithmetic driver</td>
-        </tr>
-        <tr>
-          <td>Dynamic field</td>
-          <td>Single \(A_0(t)\)</td>
-          <td>Multi-component and locally structured \(A_0\)</td>
-          <td>Global field with local mechanism decomposition</td>
-        </tr>
-        <tr>
-          <td>Main objective</td>
-          <td>Operator / trace / determinant bridge</td>
-          <td>Mechanism discovery and classification</td>
-          <td>Empirical excavation feeding operator formalization</td>
-        </tr>
-        <tr>
-          <td>Zero picture</td>
-          <td>Implicitly rather uniform</td>
-          <td>Explicitly heterogeneous</td>
-          <td>One global scaffold, multiple local mechanisms</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="prop">
-    <div class="label">Unified Proposition.</div>
-    <p>
-      The original operator program provides the <strong>formal target</strong>, while the empirical vortex architecture provides the <strong>currently observed internal structure</strong> that any successful formalization must accommodate.
-    </p>
-  </div>
-
-  <h2>12. Current Mathematical Gap</h2>
-  <p>
-    The decisive unresolved gap can be stated plainly:
-  </p>
-
-  <div class="status">
-    <div class="label">Current Gap.</div>
-    <p>
-      The empirical architecture is rich enough to suggest mechanism classes and hybrid behavior, but no theorem yet shows that this structure is the local manifestation of a rigorously defined self-adjoint operator whose spectrum reproduces the nontrivial zeta zeros.
-    </p>
-  </div>
-
-  <p>
-    In other words, the work currently has:
-  </p>
-  <ul>
-    <li>a plausible arithmetic driver,</li>
-    <li>a nontrivial mechanism language,</li>
-    <li>empirical structural evidence,</li>
-    <li>but no rigorous bridge from these to a completed spectral theorem.</li>
-  </ul>
-
-  <p>
-    A related unresolved point is the older heuristic relation
-  </p>
-  <div class="eq">A_0(T)\sim S(T),</div>
-  <p>
-    where \(S(T)\) is the oscillatory argument term in classical zero counting. In the unified perspective, this relation is better interpreted not as a single global equality but as a <strong>shell-local or mechanism-local approximation principle</strong>.
-  </p>
-
-  <h2>13. Next Research Program</h2>
-  <ol>
-    <li><strong>Blockwise zero classification.</strong> Extend the current classification layer to higher zeros in blocks and determine whether the same mode/role distributions persist.</li>
-    <li><strong>Shell invariants.</strong> Identify quantities preserved across height scales and robust under local refinement.</li>
-    <li><strong>Constraint theory.</strong> Replace empirical vortex tags by sharper mathematical criteria for shell contact, shell approach, and shell transition.</li>
-    <li><strong>Operator reconstruction.</strong> Determine whether the observed hybrid structure can be recovered from a natural operator class rather than inserted by hand.</li>
-    <li><strong>Critical-line mechanism.</strong> Search for a mechanism showing that stable shell-locking is only compatible with critical-line zeros.</li>
-  </ol>
-
-  <div class="program">
-    <div class="label">Programmatic Goal.</div>
-    <p>
-      The long-term goal is not simply to fit known zeros more accurately, but to discover a structural principle under which zeta zeros become necessary outputs of a constrained arithmetic vortex flow.
-    </p>
-  </div>
-
-  <h2>14. Conclusion</h2>
-  <p>
-    The present unified version of Vortex Operator Theory should be read as a two-level research program.
-  </p>
-  <ul>
-    <li>The <strong>old layer</strong> provides an operator ansatz and a formal destination.</li>
-    <li>The <strong>new layer</strong> provides an empirical vortex architecture and a mechanism language.</li>
-  </ul>
-
-  <p>
-    The main conceptual conclusion so far is that zeta zeros appear, within this framework, to be <strong>mechanistically heterogeneous</strong>. Some behave as stable shell-contact events, some as shell-approach events, and a minority require rescue-like mechanisms. This suggests that any future successful theory may have to explain a family of resonance mechanisms rather than a single universal local template.
-  </p>
-
-  <p>
-    This is not yet a proof of the Riemann Hypothesis. It is, however, a more coherent and more informative research position than either a bare operator proposal or a purely empirical detector alone.
-  </p>
-
-  <div class="foot">
-    <p><strong>Status.</strong> Research preprint draft. Not a proof of RH. Intended as a unified discussion document for analysts, spectral theorists, and researchers interested in arithmetic dynamics.</p>
-  </div>
+<div class="foot">
+  <p><strong>Status.</strong> Formal core draft. Suitable as a theorem-oriented appendix or technical section inside the larger VOT preprint.</p>
+</div>
 
 </div>
 </body>
