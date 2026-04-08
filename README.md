@@ -102,7 +102,7 @@ Suggested structure:
 
 ## Author
 
-**Masa K.**
+**Matti S. Kärki**
 
 If you cite or discuss this work, please attribute the repository and author clearly.
 
@@ -121,7 +121,7 @@ If you want stronger timestamped authorship, connect this repository to **Zenodo
 A simple citation format could be:
 
 ```text
-Masa K., Vortex Operator Theory (VOT): A Dynamic Spectral Framework for the Riemann Hypothesis, GitHub repository, year.
+Matti S. Kärki, Vortex Operator Theory (VOT): A Dynamic Spectral Framework for the Riemann Hypothesis, GitHub repository, year.
 ```
 
 ## Disclaimer
