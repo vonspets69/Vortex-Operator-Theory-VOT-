@@ -1,3 +1,5 @@
+First public release: April 2026
+
 # Vortex Operator Theory (VOT)
 
 A dynamic spectral framework for the Riemann hypothesis.
