@@ -1,273 +1,545 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vortex Operator Theory (VOT): A Dynamic Spectral Framework for the Riemann Hypothesis</title>
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
-      },
-      svg: { fontCache: 'global' }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-  <style>
-    :root {
-      --text: #111;
-      --muted: #555;
-      --line: #d9d9df;
-      --soft: #f7f7f9;
-    }
-    body {
-      font-family: "Georgia", "Times New Roman", serif;
-      line-height: 1.68;
-      color: var(--text);
-      max-width: 980px;
-      margin: 40px auto;
-      padding: 0 24px 72px;
-      background: #fff;
-    }
-    h1, h2, h3 { line-height: 1.25; }
-    h1 {
-      font-size: 2.1rem;
-      margin-bottom: 0.25rem;
-    }
-    h2 {
-      font-size: 1.35rem;
-      margin-top: 2rem;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 0.25rem;
-    }
-    h3 {
-      font-size: 1.08rem;
-      margin-top: 1.35rem;
-    }
-    .meta {
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .abstract, .note {
-      background: var(--soft);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 16px 18px;
-      margin: 16px 0;
-    }
-    .abstract-title {
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-size: 0.95rem;
-      margin-bottom: 0.35rem;
-    }
-    .eq { margin: 12px 0; }
-    .small { color: var(--muted); font-size: 0.95rem; }
-    .key { font-weight: bold; }
-    ul { margin-top: 0.35rem; }
-    li { margin: 0.4rem 0; }
-    hr {
-      border: 0;
-      border-top: 1px solid var(--line);
-      margin: 30px 0;
-    }
-    code {
-      background: #f3f3f5;
-      padding: 1px 5px;
-      border-radius: 4px;
-      font-size: 0.95em;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vortex Operator Theory (VOT): A Dynamical Resonance Framework for the Zeros of the Riemann Zeta Function</title>
+<style>
+  :root{
+    --fg:#111;
+    --muted:#555;
+    --line:#ddd;
+    --bg:#fff;
+    --soft:#f7f7f7;
+    --accent:#1f4b99;
+  }
+  html,body{background:var(--bg); color:var(--fg); margin:0; padding:0;}
+  body{
+    font-family: "Times New Roman", Times, serif;
+    line-height:1.55;
+    font-size:18px;
+  }
+  .page{
+    max-width:920px;
+    margin:0 auto;
+    padding:40px 28px 72px;
+  }
+  h1,h2,h3,h4{
+    font-weight:600;
+    line-height:1.25;
+    margin:1.2em 0 0.45em;
+  }
+  h1{
+    font-size:2rem;
+    text-align:center;
+    margin-top:0.2em;
+  }
+  h2{
+    font-size:1.35rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:0.18em;
+  }
+  h3{font-size:1.08rem;}
+  p{margin:0.6em 0;}
+  .authors, .meta, .abstract-title{
+    text-align:center;
+  }
+  .authors{font-size:1.05rem; margin-top:0.8em;}
+  .meta{font-size:0.95rem; color:var(--muted); margin-top:0.2em;}
+  .abstract{
+    margin:1.5em auto 1.8em;
+    padding:1em 1.2em;
+    border:1px solid var(--line);
+    background:var(--soft);
+  }
+  .abstract-title{
+    font-weight:700;
+    margin-bottom:0.4em;
+  }
+  .toc{
+    border:1px solid var(--line);
+    padding:1em 1.2em;
+    background:#fcfcfc;
+    margin:1.6em 0 2em;
+  }
+  .toc h3{margin-top:0;}
+  .toc ol{margin:0.2em 0 0 1.2em;}
+  .eq{
+    display:block;
+    margin:1em auto;
+    padding:0.2em 0.5em;
+    text-align:center;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    white-space:pre-wrap;
+  }
+  .blockquote{
+    margin:1em 1.5em;
+    padding-left:1em;
+    border-left:3px solid #bbb;
+    color:#222;
+  }
+  .defn, .remark, .prop, .hypo, .algo, .empirical, .warning{
+    border:1px solid var(--line);
+    padding:0.8em 1em;
+    margin:1em 0;
+    background:#fbfbfb;
+  }
+  .defn .label, .remark .label, .prop .label, .hypo .label, .algo .label, .empirical .label, .warning .label{
+    font-weight:700;
+    color:var(--accent);
+  }
+  ul,ol{margin:0.5em 0 0.7em 1.4em;}
+  li{margin:0.22em 0;}
+  code, pre{
+    font-family: "Courier New", Courier, monospace;
+    font-size:0.92em;
+  }
+  pre{
+    background:#fafafa;
+    border:1px solid var(--line);
+    padding:1em;
+    overflow:auto;
+  }
+  .small{font-size:0.94rem; color:var(--muted);}
+  .table-wrap{overflow:auto; margin:1em 0;}
+  table{
+    border-collapse:collapse;
+    width:100%;
+    font-size:0.98rem;
+  }
+  th, td{
+    border:1px solid var(--line);
+    padding:0.45em 0.55em;
+    vertical-align:top;
+  }
+  th{background:#f3f3f3;}
+  .center{text-align:center;}
+  .foot{
+    margin-top:3em;
+    padding-top:1em;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:0.94rem;
+  }
+</style>
 </head>
 <body>
-  <h1>Vortex Operator Theory (VOT): A Dynamic Spectral Framework for the Riemann Hypothesis</h1>
-  <div class="meta">
-    <div><strong>Author:</strong> Matti S. Kärki</div>
-    <div><strong>Status:</strong> Conceptual preprint / research program</div>
-  </div>
+<div class="page">
+
+  <h1>Vortex Operator Theory (VOT): A Dynamical Resonance Framework for the Zeros of the Riemann Zeta Function</h1>
+
+  <div class="authors">Research preprint draft</div>
+  <div class="meta">HTML manuscript version • arXiv-style draft • empirical/theoretical hybrid document</div>
 
   <div class="abstract">
     <div class="abstract-title">Abstract</div>
     <p>
-      This preprint proposes a dynamic spectral interpretation of the Riemann hypothesis. The main idea is that the nontrivial zeros of the zeta function may be understood not merely as a static set of complex numbers, but as resonant spectral values generated by a self-adjoint operator driven by prime-encoded input. The framework introduces a prime-source distribution $K(t)$, a dynamic zero-point field $A_0(t)$, and an operator
-      $$H = -i\frac{d}{dt} + \frac12 + A_0(t).$$
-      The central claim is not that a proof has already been obtained, but that the Riemann hypothesis may be reformulated as a spectral-dynamic stability problem. Within this framework, the average location of the zeros is approximated by a Lambert-$W$ inversion of the Riemann–von Mangoldt main term, and the oscillatory correction is conjecturally encoded by the field $A_0(t)$ through the relation $A_0(T)\sim S(T)$. The decisive open step is to justify this identification rigorously and to derive the required trace identity from the operator model.
+      We introduce <strong>Vortex Operator Theory</strong> (VOT), a dynamical resonance framework for modeling the nontrivial zeros of the Riemann zeta function. The guiding principle is that zeros should not be treated purely as static spectral locations, but as outcomes of evolving arithmetic resonance structures generated from a von Mangoldt-type signal and its local time-frequency geometry.
     </p>
+    <p>
+      The resulting framework combines: (i) a damped prime-event signal, (ii) localized Fourier analysis, (iii) a relative purity surface penalizing leakage more strongly than raw amplitude, (iv) dynamic programming for extracting drifting key paths, and (v) a structured event system based on <em>anchors</em>, <em>bridges</em>, and <em>transitions</em>. We then reinterpret the resulting objects in a vortex ontology consisting of <em>shells</em>, a <em>0-point</em>, and directed <em>flow</em>.
+    </p>
+    <p>
+      Empirically, the framework suggests that zeta zeros are not homogeneous. Instead, they appear to split into distinct mechanism classes, including stable shell-contact events and shell-approach events. A hybrid model combining a global scaffold with local correction layers improves empirical coverage relative to purely local models, while preserving a coherent vortex interpretation.
+    </p>
+    <p>
+      This document does <strong>not</strong> claim a proof of the Riemann Hypothesis. Rather, it presents a structured research program, a formal language for the model, and an empirical architecture that may help organize future work toward a deeper operator-theoretic or dynamical understanding of zeta zeros.
+    </p>
+  </div>
+
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li>Introduction</li>
+      <li>Conceptual Principle</li>
+      <li>Arithmetic Signal Construction</li>
+      <li>Localized Spectral Geometry</li>
+      <li>Purity Surface and Dynamic Selection</li>
+      <li>Event Ontology</li>
+      <li>Vortex Interpretation</li>
+      <li>Hybrid Architecture</li>
+      <li>Zero Classification Layer</li>
+      <li>Empirical Scaling Summary</li>
+      <li>Interpretive Claims and Limits</li>
+      <li>Toward a Mathematical Program</li>
+      <li>Conclusion</li>
+    </ol>
   </div>
 
   <h2>1. Introduction</h2>
   <p>
-    The Hilbert–Pólya viewpoint suggests that the nontrivial zeros of the Riemann zeta function may arise as the spectrum of a self-adjoint operator. Vortex Operator Theory (VOT) follows this broad direction, but introduces an explicitly dynamic mechanism: the primes act as impulsive input, a damped oscillatory field reacts to that input, and the resulting field deforms an operator whose spectrum is intended to reproduce the imaginary parts of the nontrivial zeta zeros.
+    Let
+    <span class="eq">ζ(s)</span>
+    denote the Riemann zeta function, and let its nontrivial zeros be written as
   </p>
+  <div class="eq">ρ = β + iγ.</div>
   <p>
-    The proposal can be summarized schematically as
+    The Riemann Hypothesis asserts that all nontrivial zeros satisfy
   </p>
-  <p class="eq">$$\text{alkuluvut} \;\to\; K(t) \;\to\; A_0(t) \;\to\; H \;\to\; \text{spektri} \approx \{\gamma_n\}.$$</p>
+  <div class="eq">β = 1/2.</div>
   <p>
-    The present document should be read as a structured research program rather than a completed proof. Its purpose is to define the framework clearly, separate established ingredients from conjectural ones, and identify the exact mathematical bottleneck.
+    In classical treatments, zeta zeros are studied through analytic continuation, explicit formulas, spectral analogies, and deep relations with prime distributions. The present work proposes a complementary viewpoint:
   </p>
 
-  <h2>2. Operator framework</h2>
-  <p>
-    Work in the Hilbert space
-  </p>
-  <p class="eq">$$\mathcal H = L^2(\mathbb{R}/L\mathbb{Z}),$$</p>
-  <p>
-    and define the operator
-  </p>
-  <p class="eq">$$H = -i\frac{d}{dt} + \frac12 + A_0(t).$$</p>
-  <p>
-    Here $-i\,d/dt$ acts as a free scaling generator, the constant term $1/2$ encodes the critical line, and $A_0(t)$ is a real-valued dynamic field. If $A_0(t)\in\mathbb{R}$ and is bounded, then $H$ is self-adjoint in the compact circle model.
-  </p>
-
-  <h2>3. Prime input as a source distribution</h2>
-  <p>
-    The arithmetic input is represented by the von Mangoldt-type source
-  </p>
-  <p class="eq">$$K(t)=\sum_{p,k}\log p\,\delta(t-k\log p).$$</p>
-  <p>
-    This encodes not only primes but prime powers as well. In the VOT viewpoint, the role of $K(t)$ is to inject arithmetic structure into a time-domain response system.
-  </p>
-
-  <h2>4. Dynamic zero-point field</h2>
-  <p>
-    The field $A_0(t)$ is introduced through the response equation
-  </p>
-  <p class="eq">$$\frac{dA_0}{dt}=-\alpha A_0+\beta\sin(\omega t)K(t).$$</p>
-  <p>
-    Its causal solution is written as
-  </p>
-  <p class="eq">$$A_0(t)=\beta\sum_{p,k:\,k\log p\le t}\log p\,e^{-\alpha(t-k\log p)}\sin(\omega k\log p).$$</p>
-  <p>
-    This makes the field causal, damped, oscillatory, and explicitly prime-linked. Conceptually, $A_0(t)$ is meant to capture the oscillatory arithmetic correction missing from the mean asymptotic law for the zeros.
-  </p>
-
-  <h2>5. Main-term approximation for the zeros</h2>
-  <p>
-    The mean position of the nontrivial zeros is approximated by
-  </p>
-  <p class="eq">$$\gamma_n^{(0)}=\frac{2\pi (n-11/8)}{W\!\left((n-11/8)/e\right)}.$$</p>
-  <p>
-    This is a Lambert-$W$ inversion of the main term of the Riemann–von Mangoldt formula. Numerically, it provides a strong first approximation to the zero ordinates. In earlier tests on the first 1000 zeros, the mean percentage error was approximately <strong>0.08%</strong>.
-  </p>
-
-  <h2>6. Oscillatory correction term</h2>
-  <p>
-    Write the exact ordinate as
-  </p>
-  <p class="eq">$$\gamma_n=\gamma_n^{(0)}+\delta_n.$$</p>
-  <p>
-    A linearized correction yields
-  </p>
-  <p class="eq">$$\delta_n\approx -\frac{2\pi}{\log(\gamma_n^{(0)}/2\pi)}\,S\!\left(\gamma_n^{(0)}\right),$$</p>
-  <p>
-    where $S(T)$ denotes the oscillatory part of the argument of the zeta function. This suggests that the true fine structure of the zeros is controlled by an oscillatory term beyond the average law.
-  </p>
-
-  <h2>7. Central conjectural identification</h2>
-  <p>
-    The key hypothesis of the framework is
-  </p>
-  <p class="eq">$$A_0(T)\sim S(T).$$</p>
-  <p>
-    If the dynamic zero-point field reconstructs the same oscillatory structure as $S(T)$, then the zero ordinates decompose naturally into a main asymptotic term and a dynamic correction. This is the conceptual bridge between the operator dynamics and the known oscillatory behavior of the zeta zero counting function.
-  </p>
-
-  <h2>8. Spectral interpretation</h2>
-  <p>
-    The intended spectral mechanism is the following. If one can show that
-  </p>
-  <p class="eq">$$\mathrm{Tr}(e^{-itH})=\sum_{p,k}\log p\,\delta(t-k\log p),$$</p>
-  <p>
-    then its Laplace transform yields
-  </p>
-  <p class="eq">$$-\frac{\zeta'(s)}{\zeta(s)},$$</p>
-  <p>
-    and formally one is led to
-  </p>
-  <p class="eq">$$\det(H-E)\propto \xi\!\left(\frac12+iE\right).$$</p>
-  <p>
-    Under this chain of implications, the spectrum of $H$ would correspond to the nontrivial zeros of the zeta function.
-  </p>
-
-  <h2>9. Status of the program</h2>
-  <ul>
-    <li><span class="key">Strength:</span> the framework unifies prime input, dynamic response, and spectral interpretation in a single model.</li>
-    <li><span class="key">Numerical motivation:</span> the Lambert-$W$ main-term approximation captures the first 1000 zeros with good accuracy.</li>
-    <li><span class="key">Critical gap:</span> the theory still requires a rigorous proof that $A_0(t)$ corresponds to $S(T)$ and that the trace identity follows from the operator construction.</li>
-  </ul>
-
-  <h2>10. Mathematical bottleneck</h2>
-  <p>
-    The decisive question is not whether the heuristic picture is suggestive, but whether the operator model can be placed on firm analytic ground. In practical terms, the bottleneck is twofold:
-  </p>
-  <ul>
-    <li>to establish a rigorous identification between the constructed field $A_0(t)$ and the oscillatory term $S(T)$;</li>
-    <li>to derive a valid trace formula for $H$ whose transform reproduces the logarithmic derivative of the zeta function.</li>
-  </ul>
-  <p>
-    Without these steps, the framework remains an interesting and potentially fertile research direction, but not a proof.
-  </p>
-<h2>11. Numerical test of the central conjecture</h2>
-
-<p>The central conjecture of VOT is the relation</p>
-<p class="eq">$$A_0(T) \sim S(T),$$</p>
-
-<p>where</p>
-<p class="eq">$$S(T) = \frac{1}{\pi} \arg \zeta\!\left(\frac12 + iT\right)$$</p>
-
-<p>is the classical oscillatory term in the Riemann–von Mangoldt formula, and</p>
-<p class="eq">$$A_0(T)=\beta\sum_{p,k:\,k\log p\le T}\log p\,e^{-\alpha(T-k\log p)}\sin(\omega k\log p)$$</p>
-
-<p>is the dynamically generated zero-point field.</p>
-
-<h3>11.1 Numerical methodology</h3>
-
-<p>To test the conjecture, we propose the following computational procedure:</p>
-
-<ul>
-  <li>Fix parameters $\alpha, \beta, \omega$.</li>
-  <li>Generate primes $p$ up to a cutoff $p \le P_{\max}$.</li>
-  <li>Construct $A_0(T)$ using the truncated sum over prime powers.</li>
-  <li>Evaluate $S(T)$ using numerical approximations of $\arg \zeta(1/2 + iT)$.</li>
-  <li>Compare the two functions over a range $T \in [T_1, T_2]$.</li>
-</ul>
-
-<h3>11.2 Normalization and comparison</h3>
-
-<p>Since $A_0(T)$ and $S(T)$ may differ by scaling and phase, we consider normalized versions:</p>
-
-<p class="eq">$$\tilde{A}_0(T) = \frac{A_0(T) - \langle A_0 \rangle}{\sigma_{A_0}}, \quad \tilde{S}(T) = \frac{S(T) - \langle S \rangle}{\sigma_S}.$$</p>
-
-<p>The comparison is then performed via correlation:</p>
-
-<p class="eq">$$\rho = \frac{\langle \tilde{A}_0(T)\tilde{S}(T)\rangle}{1},$$</p>
-
-<p>as well as visual inspection of the functions.</p>
-
-<h3>11.3 Expected outcomes</h3>
-
-<ul>
-  <li><strong>Low correlation:</strong> suggests that the conjecture $A_0 \sim S$ does not hold in this form.</li>
-  <li><strong>Moderate correlation:</strong> may indicate that a modified relation (e.g. smoothing or phase shift) is required.</li>
-  <li><strong>High correlation:</strong> would provide strong evidence that the dynamic zero-point field captures the oscillatory structure of the zeta function.</li>
-</ul>
-
-<h3>11.4 Status</h3>
-
-<p>At present, this numerical comparison has not yet been carried out. Establishing or refuting the correlation between $A_0(T)$ and $S(T)$ is therefore the most immediate next step in evaluating the validity of the VOT framework.</p>
-  <h2>12. Conclusion</h2>
-  <p>
-    VOT proposes that the Riemann hypothesis may be reformulated as a spectral-dynamic stability problem. In this picture, arithmetic information enters through a prime-source distribution, generates a dynamic zero-point field, and modifies a self-adjoint operator whose spectrum is conjecturally linked to the nontrivial zeta zeros. The proposal is mathematically incomplete, but it isolates a concrete research target: construct the operator rigorously, recover the oscillatory correction term, and prove the trace identity.
-  </p>
-
-  <div class="note">
-    <p><strong>Author's note.</strong> This document is intended as a preprint-style presentation of a research program. It is not claimed here that the Riemann hypothesis has been proved. The aim is to present the model in a form suitable for mathematical evaluation, criticism, and further refinement.</p>
+  <div class="hypo">
+    <div class="label">Guiding Hypothesis.</div>
+    <p>
+      Nontrivial zeta zeros may be viewed as outputs of a dynamical resonance system whose local structures are better described as evolving arithmetic flows than as isolated static targets.
+    </p>
   </div>
 
-  <hr />
-  <p class="small">Suggested repository contents: this HTML preprint, a concise overview HTML, numerical notes, and any scripts used to test the main-term approximation against known zero tables.</p>
+  <p>
+    The point of departure is not a direct reformulation of the classical analytic problem, but rather the construction of an arithmetic signal from prime events and the study of its local spectral organization. What emerged from this program was not a single universal resonance score, but a family of layered local structures. This led to a shift away from one-mechanism modeling and toward a multi-mechanism interpretation.
+  </p>
+
+  <h2>2. Conceptual Principle</h2>
+  <p>
+    The original working intuition of VOT can be summarized in three words:
+  </p>
+  <div class="eq"><strong>shell — 0-point — flow.</strong></div>
+
+  <div class="defn">
+    <div class="label">Definition 2.1 (Shell).</div>
+    <p>
+      A <strong>shell</strong> is a local resonance structure in the time-frequency geometry of the arithmetic signal. Intuitively, a shell is a coherent layer or band along which the signal maintains partial dynamical consistency.
+    </p>
+  </div>
+
+  <div class="defn">
+    <div class="label">Definition 2.2 (0-point).</div>
+    <p>
+      A <strong>0-point</strong> is a local attractor-like center toward which resonance alignment may evolve. It is not assumed to be a literal zero of the signal itself; rather, it is a dynamical center governing approach, locking, or failure.
+    </p>
+  </div>
+
+  <div class="defn">
+    <div class="label">Definition 2.3 (Flow).</div>
+    <p>
+      A <strong>flow</strong> is an oriented local motion in the shell structure indicating whether the system is approaching a 0-point, stabilizing near it, or transitioning away from one shell toward another.
+    </p>
+  </div>
+
+  <p>
+    The zeta zeros are then interpreted not as arbitrary output points but as locations where one of a small number of local dynamical mechanisms becomes active.
+  </p>
+
+  <h2>3. Arithmetic Signal Construction</h2>
+  <p>
+    The signal used in the current VOT prototype is built from prime-power events. Let each prime event occur at time
+  </p>
+  <div class="eq">τ = k \log p, \qquad p \text{ prime}, \; k \in \mathbb{N}.</div>
+
+  <p>
+    In its simplest single-channel form, the signal is
+  </p>
+  <div class="eq">A_0(T) = \sum_{τ \le T} \log p \, e^{-\alpha(T-τ)} \sin(\omega τ + \phi).</div>
+
+  <p>
+    In later versions, multiple channels are allowed:
+  </p>
+  <div class="eq">
+A_0^{(M)}(T) = \sum_{m=1}^{M} \sum_{τ \le T} c_m \log p \, e^{-\alpha_m(T-τ)} \sin(\omega_m τ + \phi_m).
+  </div>
+
+  <p>
+    Here:
+  </p>
+  <ul>
+    <li><strong>α<sub>m</sub></strong> controls memory decay,</li>
+    <li><strong>ω<sub>m</sub></strong> is a channel frequency,</li>
+    <li><strong>φ<sub>m</sub></strong> is a phase shift,</li>
+    <li><strong>c<sub>m</sub></strong> is a channel weight.</li>
+  </ul>
+
+  <div class="remark">
+    <div class="label">Remark.</div>
+    <p>
+      A central empirical discovery was that a purely local flexible multi-component model improved low-zero fitting but often lost long-range stability, while an earlier simpler model scaled better at larger heights. This led to the current <em>V1-backed hybrid</em> architecture: a global scaffold plus local refinement.
+    </p>
+  </div>
+
+  <h2>4. Localized Spectral Geometry</h2>
+  <p>
+    The signal is analyzed locally via a Gaussian-windowed Fourier transform. For center time \(T\) and frequency variable \(ω\),
+  </p>
+  <div class="eq">
+S(T,ω) = \int A_0(t)\, e^{iω t}\, \exp\!\left(-\frac{(t-T)^2}{2\sigma^2}\right)\,dt.
+  </div>
+
+  <p>
+    In computation, this is discretized over a time grid and a finite frequency interval. The main object of interest is the amplitude surface
+  </p>
+  <div class="eq">|S(T,ω)|.</div>
+
+  <p>
+    This surface is not used directly as a raw score. Instead, VOT studies how local energy concentrates into shells and how that concentration evolves through time.
+  </p>
+
+  <h2>5. Purity Surface and Dynamic Selection</h2>
+  <p>
+    A key lesson from development was that <strong>frequency correctness matters more than raw amplitude</strong>. Accordingly, the central derived surface is not amplitude itself but a <strong>relative purity surface</strong>.
+  </p>
+
+  <p>
+    In the basic form, one measures:
+  </p>
+  <ul>
+    <li><strong>local concentration</strong>: how much energy lies near a candidate frequency,</li>
+    <li><strong>leakage</strong>: how much energy spills away from that neighborhood,</li>
+    <li><strong>cleanup</strong>: whether mismatch is dynamically decreasing,</li>
+    <li><strong>asymmetry</strong>: a weaker shape descriptor.</li>
+  </ul>
+
+  <p>
+    One generic form used during development is:
+  </p>
+  <div class="eq">
+P(T,ω) =
+a_1 \,\text{energy}(T,ω)
++ a_2 \,\text{concentration}(T,ω)
++ a_3 \,\max(\text{cleanup}(T,ω),0)
+- a_4 \,\text{leakage}(T,ω)
++ a_5 \,\text{asymmetry}(T,ω).
+  </div>
+
+  <p>
+    From this surface, drifting key paths are extracted by dynamic programming:
+  </p>
+  <div class="eq">
+DP[i,j] = \max_k \left( DP[i-1,k] + P[i,j] - \lambda |j-k| \right).
+  </div>
+
+  <p>
+    This produces frequency paths that are locally coherent but not rigidly fixed.
+  </p>
+
+  <h2>6. Event Ontology</h2>
+  <p>
+    VOT does not reduce the analysis to a single curve. Instead, the extracted layered structures generate multiple event types.
+  </p>
+
+  <div class="defn">
+    <div class="label">Definition 6.1 (Anchor / Visible Contact).</div>
+    <p>
+      An <strong>anchor</strong> is a local event corresponding to stable shell contact: high local purity, a localized peak, and sufficient persistence.
+    </p>
+  </div>
+
+  <div class="defn">
+    <div class="label">Definition 6.2 (Bridge / Weak Attempt).</div>
+    <p>
+      A <strong>bridge</strong> is a weaker local event corresponding to directed approach toward shell contact. It is not accepted automatically: it must contribute genuinely new zero coverage or explanatory value.
+    </p>
+  </div>
+
+  <div class="defn">
+    <div class="label">Definition 6.3 (Transition).</div>
+    <p>
+      A <strong>transition</strong> is a local structural switch in the resonance geometry. In the current formulation it is not, by default, treated as a standalone event; instead it acts mainly as a trigger or support condition.
+    </p>
+  </div>
+
+  <div class="remark">
+    <div class="label">Zero-Zone Principle.</div>
+    <p>
+      The model evaluates explanatory success through <strong>zero-zones</strong>, i.e. event unions with widths, rather than point hits. A zero is counted as explained when it lies within a prescribed distance threshold from the selected event union.
+    </p>
+  </div>
+
+  <h2>7. Vortex Interpretation</h2>
+  <p>
+    To prevent the model from becoming a mere detector, an explicit vortex interpretation was imposed back on top of the event system.
+  </p>
+
+  <p>
+    Each event receives derived vortex descriptors:
+  </p>
+  <ul>
+    <li><code>shell_id</code></li>
+    <li><code>shell_stability</code></li>
+    <li><code>zero_point_approach_score</code></li>
+    <li><code>zero_point_lock_score</code></li>
+    <li><code>shell_transition_score</code></li>
+    <li><code>vortex_role</code></li>
+    <li><code>vortex_valid</code></li>
+  </ul>
+
+  <p>
+    In current usage, the key role classes are:
+  </p>
+  <ul>
+    <li><strong>shell_contact</strong>: stable shell contact near a 0-point,</li>
+    <li><strong>shell_approach</strong>: internal approach toward a 0-point,</li>
+    <li><strong>shell_transition</strong>: shell switch,</li>
+    <li><strong>shell_failure</strong>: insufficient vortex consistency.</li>
+  </ul>
+
+  <div class="prop">
+    <div class="label">Interpretive Proposition.</div>
+    <p>
+      The anchor/bridge distinction is not merely algorithmic. Under the VOT interpretation, anchors correspond primarily to shell-contact mechanisms, whereas bridges correspond to shell-approach mechanisms. This gives a mechanistic reading to event heterogeneity.
+    </p>
+  </div>
+
+  <h2>8. Hybrid Architecture</h2>
+  <p>
+    A major empirical turning point occurred when it was observed that the earlier model version V1 appeared to scale better with increasing zero height than later more flexible local models. This led to the present architecture:
+  </p>
+
+  <div class="eq"><strong>final model = V1 backbone + local precision/rescue correction.</strong></div>
+
+  <p>
+    The architecture is organized into four modes:
+  </p>
+  <ul>
+    <li><strong>V1</strong>: global scaffold / long-range backbone,</li>
+    <li><strong>precision</strong>: sharp local correction,</li>
+    <li><strong>rescue</strong>: flexible recovery in difficult regions,</li>
+    <li><strong>local_rescue</strong>: tightly constrained targeted patch for rare hard clusters.</li>
+  </ul>
+
+  <p>
+    The important conceptual point is that these are not viewed as arbitrary fitting modes but as distinct explanatory mechanisms in the evolving resonance field.
+  </p>
+
+  <h2>9. Zero Classification Layer</h2>
+  <p>
+    To move beyond coverage-only evaluation, a <strong>Zero Classification Layer</strong> was introduced. Each zero is mapped to:
+  </p>
+  <ul>
+    <li>a mode: <code>V1</code>, <code>precision</code>, <code>rescue</code>, or <code>local_rescue</code>,</li>
+    <li>a vortex role: <code>shell_contact</code>, <code>shell_approach</code>, <code>shell_transition</code>, <code>shell_failure</code>,</li>
+    <li>a shell label: <code>S1</code>–<code>S5</code>.</li>
+  </ul>
+
+  <div class="empirical">
+    <div class="label">Empirical Classification Summary (first 20 zeros).</div>
+    <ul>
+      <li>Modes: precision 14, rescue 4, local_rescue 2.</li>
+      <li>Roles: shell_contact 17, shell_approach 3.</li>
+      <li>The shell_approach subgroup is small but persistent, suggesting a distinct dynamical class rather than noise.</li>
+    </ul>
+  </div>
+
+  <p>
+    This is one of the strongest conceptual results of the project so far: <strong>zeros do not behave as a homogeneous family in the VOT framework.</strong>
+  </p>
+
+  <h2>10. Empirical Scaling Summary</h2>
+  <p>
+    A staged scaling test was performed at 20, 100, 300, and 1000 zeros. The best large-scale behavior among current variants came from the V1-backed hybrid.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Number of zeros</th>
+          <th class="center">Coverage @ 1.0</th>
+          <th class="center">Coverage @ 1.5</th>
+          <th class="center">Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>20</td>
+          <td class="center">17</td>
+          <td class="center">18</td>
+          <td>Strong local performance; local rescue solves the hardest cluster.</td>
+        </tr>
+        <tr>
+          <td>100</td>
+          <td class="center">62</td>
+          <td class="center">70</td>
+          <td>Hybrid remains better than either precision or rescue alone.</td>
+        </tr>
+        <tr>
+          <td>300</td>
+          <td class="center">151</td>
+          <td class="center">178</td>
+          <td>Global scaffold starts to matter visibly.</td>
+        </tr>
+        <tr>
+          <td>1000</td>
+          <td class="center">248</td>
+          <td class="center">308</td>
+          <td>Still far from complete; nevertheless materially better than purely local versions.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warning">
+    <div class="label">Caution.</div>
+    <p>
+      These results do not constitute a proof, a validated predictive model, or a numerically complete theory. They indicate only that the V1-backed hybrid organizes the observed low-to-mid-height structure better than several simpler alternatives explored in the project.
+    </p>
+  </div>
+
+  <h2>11. Interpretive Claims and Limits</h2>
+
+  <h3>11.1 What is being claimed</h3>
+  <ul>
+    <li>The VOT program provides a coherent dynamical language for discussing zeta-zero organization.</li>
+    <li>The empirical models support multi-mechanism behavior rather than one-mechanism uniformity.</li>
+    <li>The vortex ontology is not merely decorative; it tracks differences between stable contacts and approach events.</li>
+    <li>A global scaffold appears necessary for scaling, while local flexibility improves low-height explanatory power.</li>
+  </ul>
+
+  <h3>11.2 What is not being claimed</h3>
+  <ul>
+    <li>No proof of the Riemann Hypothesis is given.</li>
+    <li>No theorem yet shows that the present construction forces all zeros to lie on the critical line.</li>
+    <li>No uniqueness theorem yet identifies the VOT architecture as canonical.</li>
+    <li>The present work does not yet derive the observed structures from classical operator theory in a rigorous way.</li>
+  </ul>
+
+  <h2>12. Toward a Mathematical Program</h2>
+  <p>
+    The framework suggests several mathematical directions:
+  </p>
+
+  <ol>
+    <li><strong>Operator formalization.</strong> Identify a natural operator or semigroup whose local spectral geometry produces shell-contact and shell-approach classes.</li>
+    <li><strong>Shell invariants.</strong> Define quantities invariant under local refinement but preserved across large height scales.</li>
+    <li><strong>Blockwise classification.</strong> Extend the zero classification layer to higher zeros in blocks, testing whether the same mechanism taxonomy persists.</li>
+    <li><strong>Constraint theory.</strong> Replace empirical vortex tags by rigorous criteria defining when a local structure qualifies as shell contact, shell approach, or transition.</li>
+    <li><strong>Critical-line relation.</strong> Search for a mechanism showing that consistent shell-locking is only possible when the associated zero belongs to the critical line.</li>
+  </ol>
+
+  <div class="prop">
+    <div class="label">Programmatic Goal.</div>
+    <p>
+      The long-term objective is not merely to fit known zeros, but to discover a structural principle under which zeta zeros become necessary outputs of a constrained arithmetic flow.
+    </p>
+  </div>
+
+  <h2>13. Conclusion</h2>
+  <p>
+    Vortex Operator Theory proposes that the zeros of the Riemann zeta function may be better understood as outputs of a layered arithmetic resonance dynamics than as isolated static points. The framework now contains:
+  </p>
+  <ul>
+    <li>a prime-event signal construction,</li>
+    <li>a local spectral geometry,</li>
+    <li>a purity-based path extraction mechanism,</li>
+    <li>an event ontology,</li>
+    <li>a vortex interpretation,</li>
+    <li>a hybrid architecture with a global scaffold,</li>
+    <li>and a zero classification layer.</li>
+  </ul>
+
+  <p>
+    The most important conceptual conclusion at present is that zeta zeros appear, within this framework, to be <strong>mechanistically heterogeneous</strong>. Some behave as stable shell-contact events, others as shell-approach events, and a small minority require local rescue structures. This strongly suggests that any successful future theory may have to explain a family of resonance mechanisms rather than a single universal template.
+  </p>
+
+  <p>
+    The present document should therefore be read as a preprint-style research program: partly empirical, partly formal, and explicitly incomplete—but organized enough to be criticized, extended, and tested.
+  </p>
+
+  <div class="foot">
+    <p><strong>Status.</strong> Research preprint draft. Not a proof of RH. Intended for conceptual and technical discussion with analysts, spectral theorists, and researchers interested in arithmetic dynamics.</p>
+  </div>
+
+</div>
 </body>
 </html>
