@@ -10,43 +10,27 @@ A dynamical resonance framework for modeling the nontrivial zeros of the Riemann
 
 ## Overview
 
-**Vortex Operator Theory (VOT)** is a research prototype that explores a non-classical approach to the zeros of the Riemann zeta function.
+**Vortex Operator Theory (VOT)** is a research program exploring whether the zeros of the Riemann zeta function can be understood as outcomes of a **prime-driven dynamical system**.
 
-Instead of treating zeros as static spectral points, VOT models them as **outputs of a dynamical resonance system** driven by prime-based arithmetic input.
+Instead of treating zeros as static spectral points, VOT models them as:
 
-The framework combines:
+> **emergent structures of a constrained resonance field**
 
-* a **prime-driven signal** ( A_0(t) )
-* **local spectral analysis** (time–frequency structure)
-* a **vortex ontology**:
+The framework integrates:
 
-  * shell
-  * 0-point
-  * flow
-* an **event system**:
-
-  * anchor (visible contact)
-  * bridge (weak attempt)
-  * transition
-* a **hybrid architecture**:
-
-  * V1 (global scaffold)
-  * precision (local sharp correction)
-  * rescue (flexible correction)
-  * local_rescue (targeted patch)
+* arithmetic input (primes)
+* dynamical signal ( A_0(t) )
+* local spectral geometry
+* vortex-based structure (shell / 0-point / flow)
+* event system (anchor / bridge / transition)
+* hybrid modeling (global + local mechanisms)
+* and now: a **rigorous spectral operator core**
 
 ---
 
-## Key Idea
+## Two-Layer Structure
 
-> Zeta zeros are not modeled as static points,
-> but as outcomes of evolving resonance structures.
-
----
-
-## Unified Structure
-
-The current version combines two layers:
+VOT is explicitly divided into two layers:
 
 ### 1. Operator Program (long-term goal)
 
@@ -67,37 +51,54 @@ The current version combines two layers:
 
 Goal:
 
-* connect the spectrum of ( H ) to zeta zeros
-* eventually relate to ( \xi(1/2 + iE) )
+* derive zeta zeros from spectral properties of ( H )
+* connect to ( \xi(1/2 + iE) )
 
-⚠️ Not yet proven.
+⚠️ Not proven.
 
 ---
 
 ### 2. Empirical Vortex Architecture (current working model)
 
-* STFT-based local spectrum
-* purity surface (low leakage prioritized)
-* drifting key paths (dynamic programming)
-* multi-layer / multi-arc structure
-* zero-zone (interval-based detection)
+* Gaussian-windowed local spectrum (STFT)
+* purity functional ( \mathcal P(T,\omega) )
+* dynamic programming → drifting paths
+* multi-layer, multi-arc model
+* zero-zone detection (interval-based)
 
 ---
 
-## Vortex Interpretation
+## Vortex Ontology
 
-Each event is interpreted through:
+Each local structure is interpreted via:
 
-* **Shell** → local resonance structure
+* **Shell** → local resonance layer
 * **0-point** → attractor center
-* **Flow** → direction of alignment
+* **Flow** → directional alignment
 
 Event roles:
 
-* `shell_contact`
-* `shell_approach`
+* `shell_contact` (anchor)
+* `shell_approach` (bridge)
 * `shell_transition`
 * `shell_failure`
+
+---
+
+## Hybrid Model
+
+The current best-performing structure:
+
+```
+final model = V1 backbone + local corrections
+```
+
+Components:
+
+* **V1** → global scaffold (scales better)
+* **precision** → sharp local corrections
+* **rescue** → flexible adjustment
+* **local_rescue** → targeted fixes
 
 ---
 
@@ -105,30 +106,21 @@ Event roles:
 
 Each zero is assigned:
 
-* mode:
-
-  * V1
-  * precision
-  * rescue
-  * local_rescue
-* role:
-
-  * shell_contact
-  * shell_approach
-  * etc.
+* mode: V1 / precision / rescue / local_rescue
+* role: shell_contact / shell_approach / etc.
 * shell: S1–S5
 
-### Empirical result (first 20 zeros)
+### Key empirical insight
 
-* ~85% → shell_contact
-* ~15% → shell_approach
-* rare → local_rescue
+> Zeros are not homogeneous.
 
-👉 Zeros are **not homogeneous**
+* majority → shell_contact
+* minority → shell_approach
+* rare → rescue-required
 
 ---
 
-## Scaling Results
+## Scaling Results (current)
 
 | zeros | @1.0 | @1.5 |
 | ----- | ---- | ---- |
@@ -139,99 +131,161 @@ Each zero is assigned:
 
 Interpretation:
 
-* purely local models fail to scale
-* **V1-backed hybrid improves large-scale behavior**
+* purely local models degrade with scale
+* hybrid structure improves robustness
+* global scaffold (V1) is essential
 
 ---
 
-## What This Is
+## NEW: Rigorous Spectral Core
 
-* a **research framework**
-* a **mechanism discovery model**
-* a **structured experimental system**
+We now have a **formal operator-theoretic core**:
+
+### Construction
+
+From purity functional:
+[
+\mathcal P(T,\omega)
+]
+
+define smoothed reduction:
+[
+F_\beta(T)
+==========
+
+\frac{1}{\beta}\log\int e^{\beta \mathcal P(T,\omega)},d\omega
+]
+
+then:
+[
+V_\beta(T) = -F_\beta(T)
+]
+
+and operator:
+[
+H_\beta = -\frac{d^2}{dT^2} + V_\beta(T)
+]
 
 ---
 
-## What This Is NOT
+### Proven result
 
-* not a proof of the Riemann Hypothesis
-* not a complete spectral theory
-* not a final model
+If ( \mathcal P \in C^2 ) on a compact domain:
+
+* ( V_\beta \in C^2 \subset L^\infty )
+* ( H_\beta ) is **self-adjoint**
+* spectrum is **discrete**
+
+👉 This is the first rigorous mathematical core of VOT.
+
+---
+
+### Interpretation
+
+* 0-points → maxima of (F_\beta)
+* maxima → minima of (V_\beta)
+* minima → spectral localization
+
+---
+
+## What is Proven vs Open
+
+### Proven (mathematically)
+
+* construction of self-adjoint operator ( H_\beta )
+* discrete spectrum
+* well-defined potential from ( \mathcal P )
+
+---
+
+### Empirical (observed)
+
+* vortex structure
+* hybrid scaling behavior
+* zero classification patterns
+
+---
+
+### Open (core problem)
+
+[
+\mathrm{spec}(H_\beta) \stackrel{?}{=} {\gamma_n}
+]
+
+This is the exact RH-critical step.
 
 ---
 
 ## Repository Structure
 
-* `preprint/`
+```
+preprint/
+  vot_preprint_arxiv_style.html
+  vot_formal_core_spectral.html
 
-  * unified HTML manuscript (operator + vortex)
+data/
+  zero_classification.json
+  scaling_results.json
 
-* `data/`
-
-  * zero classification
-  * scaling results
-  * hybrid outputs
-
-* `notes/`
-
-  * state summaries and development notes
+notes/
+  state_summary.txt
+```
 
 ---
 
-## Current Status
+## What This Is
 
-* strong empirical structure at low–mid zeros
-* hybrid model shows better scaling than earlier versions
-* vortex ontology aligns with observed event structure
+* a structured research program
+* a hybrid of empirical + theoretical work
+* a candidate framework for RH-related structure
 
-Main limitation:
+---
 
-* no rigorous operator–spectrum proof yet
+## What This Is NOT
+
+* not a proof of RH
+* not a finished theory
+* not parameter-free
 
 ---
 
 ## Next Steps
 
-* blockwise classification (1000+ zeros)
-* shell scaling laws
-* formal vortex constraints
-* operator reconstruction from observed structure
+* spectral approximation:
+  [
+  \lambda_n(H_\beta) \approx \gamma_n
+  ]
+
+* shell invariants
+
+* large-scale classification (1000+ zeros)
+
+* operator reconstruction from ( A_0 )
 
 ---
 
 ## Philosophy
 
-VOT suggests that:
+VOT suggests:
 
-* zeros emerge from **structured arithmetic dynamics**
+* zeros arise from **structured arithmetic dynamics**
 * multiple mechanisms coexist
-* global and local structures must be combined
-
----
-
-## Contributing / Discussion
-
-This repository is open for:
-
-* critique
-* mathematical analysis
-* alternative interpretations
-* collaboration
+* global + local structure is necessary
 
 ---
 
 ## Status
 
 ⚠️ Research preprint
-⚠️ Experimental + theoretical hybrid
-⚠️ Not a proof of RH
+⚠️ Partial rigor (operator core only)
+⚠️ Main theorem still open
 
 ---
 
 ## License
 
-(choose one and keep it consistent)
+Recommended:
 
-* CC BY 4.0 (recommended for attribution)
+* CC BY 4.0
   or
-* CC0 (public domain)
+* MIT (if code-focused)
