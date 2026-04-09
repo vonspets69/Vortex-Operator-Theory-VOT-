@@ -1,327 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VOT Formal Core XI–XIV: Rigorous Spectral Core</title>
-<style>
-  :root{
-    --fg:#111; --muted:#555; --line:#ddd; --bg:#fff; --soft:#f7f7f7; --accent:#1f4b99;
-  }
-  html,body{background:var(--bg); color:var(--fg); margin:0; padding:0;}
-  body{font-family:"Times New Roman", Times, serif; line-height:1.58; font-size:18px;}
-  .page{max-width:980px; margin:0 auto; padding:36px 28px 72px;}
-  h1,h2,h3{font-weight:600; line-height:1.25; margin:1.2em 0 0.45em;}
-  h1{font-size:2rem; text-align:center; margin-top:0.1em;}
-  h2{font-size:1.35rem; border-bottom:1px solid var(--line); padding-bottom:0.18em;}
-  h3{font-size:1.08rem;}
-  p{margin:0.6em 0;}
-  .meta{text-align:center; font-size:0.95rem; color:var(--muted);}
-  .eq{display:block; margin:1em auto; text-align:center; white-space:pre-wrap; font-family:"Cambria Math","Times New Roman",serif;}
-  .box,.thm,.remark,.goal,.warning{border:1px solid var(--line); background:#fbfbfb; padding:0.85em 1em; margin:1em 0;}
-  .label{font-weight:700; color:var(--accent);}
-  ul,ol{margin:0.45em 0 0.7em 1.35em;}
-  li{margin:0.25em 0;}
-  .small{font-size:0.95rem; color:var(--muted);}
-  code,pre{font-family:"Courier New", Courier, monospace; font-size:0.92em;}
-  pre{background:#fafafa; border:1px solid var(--line); padding:1em; overflow:auto;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VOT Preprint – Asymptoottinen backbone ja residuaaliarkkitehtuuri</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root { --fg:#111; --muted:#555; --line:#ddd; --bg:#fff; --box:#f7f7f9; --accent:#0f3d8a; }
+    html, body { background:var(--bg); color:var(--fg); font-family:Arial, Helvetica, sans-serif; line-height:1.58; margin:0; padding:0; }
+    body { max-width:980px; margin:40px auto; padding:0 22px 60px; }
+    h1, h2, h3 { line-height:1.22; margin-top:1.5rem; margin-bottom:0.6rem; }
+    h1 { font-size:2.1rem; margin-top:0; }
+    h2 { font-size:1.4rem; border-bottom:1px solid var(--line); padding-bottom:0.2rem; }
+    h3 { font-size:1.1rem; }
+    p { margin:0.7rem 0; }
+    .subtitle { color:var(--muted); margin-top:-0.2rem; margin-bottom:1.2rem; }
+    .box { background:var(--box); border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin:14px 0; }
+    .small { color:var(--muted); font-size:0.95rem; }
+    .mono { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:0.95rem; white-space:pre-wrap; background:#fafafa; border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+    table { width:100%; border-collapse:collapse; margin:14px 0; font-size:0.97rem; }
+    th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+    th { background:#fafafa; }
+    .eq { margin:14px 0; }
+    .warn { color:#7a1f1f; font-weight:bold; }
+    .foot { margin-top:36px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:0.92rem; }
+    ul { margin-top:0.4rem; margin-bottom:0.9rem; }
+    li { margin:0.35rem 0; }
+    a { color:var(--accent); }
+  </style>
 </head>
 <body>
-<div class="page">
+  <h1>Vortex Operator Theory (VOT)</h1>
+  <div class="subtitle">Preprint-luonnos: asymptoottinen backbone, residuaaliarkkitehtuuri ja nykyinen tutkimusohjelma</div>
 
-<h1>Vortex Operator Theory (VOT)<br>Formal Core XI–XIV: Rigorous Spectral Core</h1>
-<div class="meta">HTML draft • operator-theoretic core extracted from the VOT research program</div>
-
-<div class="goal">
-  <div class="label">Purpose.</div>
-  <p>
-    This note isolates the first rigorous spectral layer of Vortex Operator Theory. The aim is not yet to prove the Riemann Hypothesis, but to identify a mathematically clean core: a self-adjoint operator generated from a VOT-derived potential, together with a precise statement of the gap that still remains.
-  </p>
-</div>
-
-<h2>1. Spectral Objective</h2>
-<p>
-  The VOT program produces a local purity functional \(\mathcal P(T,\omega)\), shells, 0-points, and event structures. The next formal question is whether these objects can be linked to a genuine self-adjoint operator. The target is an operator of Schrödinger type:
-</p>
-<div class="eq">
-H_{\mathrm{eff}} = -\frac{d^2}{dT^2} + V(T).
-</div>
-<p>
-  The long-term interpretive goal is that the relevant spectral data of \(H_{\mathrm{eff}}\) should encode the zero structure extracted empirically from the VOT architecture.
-</p>
-
-<h2>2. Hilbert Space and Base Operator</h2>
-<p>
-  Let \(I=[T_{\min},T_{\max}]\subset \mathbb R\) be a compact interval. We work in the Hilbert space
-</p>
-<div class="eq">\mathcal H = L^2(I).</div>
-<p>
-  Define the differential operator
-</p>
-<div class="eq">
-H_{\mathrm{eff}}u = -u'' + V(T)u
-</div>
-<p>
-  with Dirichlet boundary conditions
-</p>
-<div class="eq">
-u(T_{\min})=u(T_{\max})=0.
-</div>
-
-<div class="remark">
-  <div class="label">Why this setup?</div>
-  <p>
-    This is the simplest rigorous starting point. On a finite interval, classical Sturm–Liouville and Kato–Rellich theory give a clean self-adjointness result under very mild assumptions on the potential.
-  </p>
-</div>
-
-<h2>3. Minimal Conditions on the Potential</h2>
-<p>
-  For the first rigorous layer, assume:
-</p>
-<ul>
-  <li>\(V \in L^\infty(I)\),</li>
-  <li>\(V(T)\in \mathbb R\) for all \(T\in I\).</li>
-</ul>
-<p>
-  Equivalently, \(V\) is a bounded real multiplication operator on \(L^2(I)\).
-</p>
-
-<h2>4. Quadratic Form</h2>
-<p>
-  Associate to \(H_{\mathrm{eff}}\) the quadratic form
-</p>
-<div class="eq">
-q[u] = \int_I \left(|u'(T)|^2 + V(T)|u(T)|^2\right)\,dT.
-</div>
-<p>
-  Since \(V\in L^\infty(I)\), the form is well-defined on \(H_0^1(I)\). If \(V\ge -C\), then the shifted form
-</p>
-<div class="eq">
-q_C[u] = q[u] + (C+1)\|u\|_{L^2(I)}^2
-</div>
-<p>
-  is positive and closed.
-</p>
-
-<h2>5. Theorem A: Self-Adjointness on a Finite Interval</h2>
-<div class="thm">
-  <div class="label">Theorem A.</div>
-  <p>
-    Let \(I=[T_{\min},T_{\max}]\) be a compact interval and let \(V\in L^\infty(I)\) be real-valued. Then the operator
-  </p>
-  <div class="eq">
-  H_{\mathrm{eff}} = -\frac{d^2}{dT^2} + V(T)
+  <div class="box">
+    <p><strong>Tiivistelmä.</strong> Tämä dokumentti kokoaa nykyisen VOT-työn yhdeksi siivotuksi ja sisäisesti johdonmukaiseksi preprint-luonnokseksi. Pääväite ei ole RH-todistus. Nykyinen vahvin tulos on, että Lambert-W-inversiolla saatu backbone antaa hyvän parametrittoman approksimaation zeta-nollille, ja että backbone-jäännös käyttäytyy täsmälleen sellaisessa mittakaavassa, jossa johtava korjaustermi pitäisi olla argumenttifunktion S(T) määräämä. Samalla useat dynaamiset, STFT-pohjaiset ja prime-signaalista johdetut korjausmallit on jo testattu eikä niistä ole vielä löytynyt robustia parannusta backboneen.</p>
   </div>
-  <p>
-    with Dirichlet boundary conditions is self-adjoint on \(L^2(I)\). Moreover, it has compact resolvent and therefore purely discrete spectrum.
-  </p>
-</div>
 
-<h3>Proof sketch</h3>
-<ul>
-  <li>The Dirichlet Laplacian \(H_0=-d^2/dT^2\) on \(I\) is self-adjoint.</li>
-  <li>The multiplication operator by \(V\) is bounded and self-adjoint because \(V\in L^\infty(I)\) and is real-valued.</li>
-  <li>Hence \(H_{\mathrm{eff}}=H_0+V\) is self-adjoint by the bounded perturbation theorem (or Kato–Rellich in this bounded case).</li>
-  <li>On a finite interval, the Dirichlet Laplacian has compact resolvent, and bounded perturbations preserve compact resolvent.</li>
-</ul>
+  <h2>1. Tausta ja tavoite</h2>
+  <p>Tämän tutkimusohjelman tavoite on erottaa kaksi eri tasoa Riemannin zeta-funktion epätriviaalien nollien mallinnuksessa:</p>
+  <div class="eq">$$\gamma_n = \text{backbone} + \text{small correction}.$$</div>
+  <p>Työn alkuvaiheissa painopiste oli dynaamisissa prime-signaaleissa, STFT-ridgeissä, vaiheessa ja monikaistaisissa rakenteissa. Nykytilanteessa vahvin empiirinen signaali tulee kuitenkin vanhemmasta, paljon yksinkertaisemmasta selkärankamallista: Riemann–von Mangoldtin päätermin eksplisiittisestä inversiosta. Siksi tämä dokumentti ottaa sen lähtökohdaksi eikä yritä enää generoida nollia alusta asti yhdellä globaalilla signaalilla.</p>
 
-<div class="remark">
-  <div class="label">Interpretation.</div>
-  <p>
-    This is the first genuinely rigorous spectral statement available inside the VOT program: once a bounded real potential \(V(T)\) is defined, the corresponding effective operator is mathematically well-posed.
-  </p>
-</div>
+  <h2>2. Asymptoottinen backbone</h2>
+  <p>Käytetään Riemann–von Mangoldtin päätermiä</p>
+  <div class="eq">$$q_0(T)=\frac{T}{2\pi}\log\frac{T}{2\pi}-\frac{T}{2\pi}+\frac78.$$</div>
+  <p>Sen Lambert-W-inversio antaa parametrittoman backbone-kaavan</p>
+  <div class="eq">$$\gamma_n^{(0)}=\frac{2\pi (n-11/8)}{W\!\left((n-11/8)/e\right)}.$$</div>
+  <p>Tämä on nykyisen työn vahvin osa: ei fitattuja parametreja, ei signaalinkäsittelyä, vain päätermin suora inversio.</p>
 
-<h2>6. How to Construct the Potential from VOT</h2>
-<p>
-  The empirical VOT framework produces a two-variable purity functional \(\mathcal P(T,\omega)\). A naïve reduction would define
-</p>
-<div class="eq">
-\omega^*(T)=\arg\max_\omega \mathcal P(T,\omega), \qquad F(T)=\mathcal P(T,\omega^*(T)),
-</div>
-<p>
-  and then set
-</p>
-<div class="eq">V(T)=-F(T).</div>
-<p>
-  However, this direct maximizer can fail to be unique or continuous. To avoid this, a smoothed reduction is preferable.
-</p>
+  <h2>3. Numeerinen validointi: ensimmäiset 300 nollaa</h2>
+  <p>Nollat laskettiin menetelmällä <span class="mono">mpmath.zetazero(n)</span>, ei Hardy Z-funktion pelkillä sign change -havainnoilla. Tämä on tärkeää, koska Gram-poikkeukset rikkovat pelkän merkinvaihtolaskennan.</p>
 
-<h2>7. Smoothed Reduction via Log-Sum-Exp</h2>
-<p>
-  Let \(\Omega\subset\mathbb R\) be a compact frequency window and assume \(\mathcal P\in C^2(I\times\Omega)\). For \(\beta>0\), define
-</p>
-<div class="eq">
-F_\beta(T)
-=
-\frac{1}{\beta}
-\log\int_\Omega e^{\beta \mathcal P(T,\omega)}\,d\omega.
-</div>
-<p>
-  Then define the effective VOT potential by
-</p>
-<div class="eq">
-V_\beta(T)=-F_\beta(T).
-</div>
+  <h3>3.1 Globaalit luvut, 300 nollaa</h3>
+  <table>
+    <tr><th>Suure</th><th>Arvo</th></tr>
+    <tr><td>MAE</td><td>0.338114470</td></tr>
+    <tr><td>RMSE</td><td>0.409486031</td></tr>
+    <tr><td>Suurin absoluuttinen virhe</td><td>0.993710851</td></tr>
+  </table>
 
-<h2>8. Theorem B: Regularity of the Smoothed Potential</h2>
-<div class="thm">
-  <div class="label">Theorem B.</div>
-  <p>
-    Let \(I,\Omega\) be compact intervals and let \(\mathcal P\in C^2(I\times\Omega)\) be real-valued. Then
-  </p>
-  <div class="eq">
-  F_\beta(T)=\frac{1}{\beta}\log\int_\Omega e^{\beta \mathcal P(T,\omega)}\,d\omega
+  <h3>3.2 Lohkoittainen käyttäytyminen (50 nollan blokit)</h3>
+  <table>
+    <tr><th>Blokki</th><th>n-alue</th><th>MAE</th><th>RMSE</th><th>Max error</th><th>Mean true T</th></tr>
+    <tr><td>1</td><td>1–50</td><td>0.422077941</td><td>0.489282230</td><td>0.993710851</td><td>87.629029</td></tr>
+    <tr><td>2</td><td>51–100</td><td>0.364436665</td><td>0.435686127</td><td>0.947860891</td><td>191.808475</td></tr>
+    <tr><td>3</td><td>101–150</td><td>0.304447500</td><td>0.385211504</td><td>0.836182107</td><td>278.871999</td></tr>
+    <tr><td>4</td><td>151–200</td><td>0.336482408</td><td>0.390135526</td><td>0.768346995</td><td>359.012997</td></tr>
+    <tr><td>5</td><td>201–250</td><td>0.296943374</td><td>0.372279110</td><td>0.895560444</td><td>434.851151</td></tr>
+    <tr><td>6</td><td>251–300</td><td>0.304298931</td><td>0.371036373</td><td>0.915449553</td><td>507.657346</td></tr>
+  </table>
+  <p>Lohkoittainen trendi on laskeva keskimäärin. MAE:n lineaarinen slope per 50 nollaa oli noin -0.0217 ja RMSE:n slope noin -0.0222. Tämä ei vielä todista mitään lopullista asymptoottista lakia, mutta se tukee vahvasti käsitystä, että backbone on oikea globaali runko eikä vain matalien nollien sattumallinen approksimaatio.</p>
+
+  <h2>4. Backbone/residuaali-arkkitehtuuri</h2>
+  <p>Määritellään residuaali</p>
+  <div class="eq">$$\delta_n=\gamma_n-\gamma_n^{(0)}.$$</div>
+  <p>Jos linearisoi q₀-termin backbonein ympärillä, johtava korjausrakenne on</p>
+  <div class="eq">$$\delta_n \approx -\frac{2\pi\,S(\gamma_n)}{\log(\gamma_n/2\pi)},$$</div>
+  <p>missä S(T) = (1/π) arg ζ(1/2+iT) sopivalla unwrap-konventiolla. Tämä ei ole tässä dokumentissa todistettu uutena tuloksena, vaan koko nykyisen työn kannalta luonnollinen leading-order-rakenne.</p>
+
+  <div class="box">
+    <p><strong>Keskeinen rakennelausuma.</strong></p>
+    <div class="eq">$$\gamma_n = \gamma_n^{(0)} + \delta_n,\qquad \delta_n \text{ on pieni, oskilloiva ja }S(T)\text{-skaalassa}.$$</div>
   </div>
-  <p>
-    belongs to \(C^2(I)\). Consequently,
-  </p>
-  <div class="eq">V_\beta(T)=-F_\beta(T)\in C^2(I)\subset L^\infty(I),</div>
-  <p>
-    and the operator
-  </p>
-  <div class="eq">
-    H_\beta = -\frac{d^2}{dT^2}+V_\beta(T)
+
+  <h2>5. Residuaalin skaalaustesti</h2>
+  <p>Määriteltiin proxy</p>
+  <div class="eq">$$S_{\mathrm{proxy},n}:= -\frac{\delta_n\log(\gamma_n^{(0)}/2\pi)}{2\pi}.$$</div>
+  <p>Tämän tarkoitus on testata, näyttääkö backbone-jäännös juuri sellaiselta, mitä S(T)-termiltä pitäisi leading-orderissa odottaa.</p>
+
+  <h3>5.1 300 nollan yhteenveto</h3>
+  <table>
+    <tr><th>Suure</th><th>Arvo</th></tr>
+    <tr><td>Scaled mean</td><td>0.001472892</td></tr>
+    <tr><td>Scaled std</td><td>0.238782697</td></tr>
+    <tr><td>Scaled min</td><td>-0.645341732</td></tr>
+    <tr><td>Scaled max</td><td>0.597733126</td></tr>
+  </table>
+
+  <h3>5.2 Lohkoittaiset scaled mean -arvot</h3>
+  <table>
+    <tr><th>Blokki</th><th>n-alue</th><th>Scaled mean</th><th>Scaled std</th></tr>
+    <tr><td>1</td><td>1–50</td><td>0.004617351</td><td>0.196740525</td></tr>
+    <tr><td>2</td><td>51–100</td><td>-0.004290956</td><td>0.236598076</td></tr>
+    <tr><td>3</td><td>101–150</td><td>0.002635648</td><td>0.232465377</td></tr>
+    <tr><td>4</td><td>151–200</td><td>-0.001342353</td><td>0.250978377</td></tr>
+    <tr><td>5</td><td>201–250</td><td>0.003825764</td><td>0.250953839</td></tr>
+    <tr><td>6</td><td>251–300</td><td>0.003391897</td><td>0.259514628</td></tr>
+  </table>
+  <p>Nämä luvut näyttävät juuri siltä miltä argumenttityyppinen oskilloiva termi pitäisi näyttää: mean pysyy lähellä nollaa kaikissa blokeissa, eikä näkyvää driftia synny. Tämä on tärkeä checkpoint: backbone-jäännös ei käyttäydy satunnaisena systemaattisena virheenä, vaan oikein skaalattuna oskilloivana terminä.</p>
+  <p class="small"><strong>Huomio.</strong> Kun tätä proxyä verrattiin count-derived suureeseen n-q₀(γₙ), osuma oli lähes täydellinen. Sitä ei pidä yli-tulkita uutena löydöksenä, koska kyseessä on käytännössä sama linearisointi kahdessa eri muodossa. Se kuitenkin vahvistaa, että residuaali on oikeassa S(T)-mittakaavassa.</p>
+
+  <h2>6. Negatiiviset tulokset: mikä ei toiminut</h2>
+  <ul>
+    <li><strong>Suora lineaarinen korjaus</strong> termistä A₀(γₙ⁽⁰⁾) — fitted coefficient käytännössä nolla.</li>
+    <li><strong>STFT phase / soft branch / 3-band phase</strong> — ei vakaata eikä hyödyllistä korrelaatiota.</li>
+    <li><strong>Paikalliset A₀-nollakohdan featuret</strong> (etäisyys, slope, curvature, asymmetry, 3/6/9-harmoniat) — pieniä in-sample-parannuksia, mutta ei robustia out-of-sample-voittoa.</li>
+    <li><strong>Backbone + companion</strong> — pieni globaali MAE-parannus 300 nollalla, mutta testipuoliskolla ei vakaasti voittanut backbonea.</li>
+    <li><strong>Adaptive Gaussian prime signal</strong> tässä toteutusmuodossa — ei voittanut vanhaa Lambert-W backbonea.</li>
+  </ul>
+
+  <div class="box">
+    <p><span class="warn">Nykyinen negatiivinen johtopäätös:</span> jos VOT-prime-signaali sisältää hyödyllistä informaatiota, sitä ei ole vielä onnistuttu erottamaan robustina, pienenä korjauksena backbone-residuaalille. Tällä hetkellä backbone on vahvin osa; correction layer on yhä avoin ongelma.</p>
   </div>
-  <p>
-    is self-adjoint on \(L^2(I)\) with Dirichlet boundary conditions and has purely discrete spectrum.
-  </p>
-</div>
 
-<h3>Proof sketch</h3>
-<ul>
-  <li>The map \((T,\omega)\mapsto e^{\beta \mathcal P(T,\omega)}\) is \(C^2\) on the compact set \(I\times\Omega\).</li>
-  <li>Differentiation under the integral sign is justified.</li>
-  <li>The logarithm is smooth on positive numbers, and the integral is strictly positive.</li>
-  <li>Hence \(F_\beta\in C^2(I)\), so \(V_\beta\) is bounded and real-valued.</li>
-  <li>Apply Theorem A.</li>
-</ul>
+  <h2>7. VOT-ontologia: mikä säilytetään</h2>
+  <table>
+    <tr><th>Käsite</th><th>Tulkinta nykyisessä ohjelmassa</th></tr>
+    <tr><td>vortex</td><td>paikallinen phase/sign-change/residual-tapahtuma</td></tr>
+    <tr><td>shell</td><td>0-pointin lähiympäristön rakenne, ei pelkkä radiaalinen kaista</td></tr>
+    <tr><td>0-point</td><td>paikallinen nollakorjauksen ehdokaspiste residuaalikerroksessa</td></tr>
+    <tr><td>flow</td><td>gradienttimainen liike backboneilta korjattuun pisteeseen</td></tr>
+    <tr><td>transition</td><td>phase crossing / sign change / branch switch -tapahtuma</td></tr>
+  </table>
+  <p>Nykyisen työn perusteella nämä käsitteet kannattaa säilyttää <em>residuaalikerroksen</em> kielenä, ei backbonein korvaajana.</p>
 
-<h2>9. Spectral Localization Heuristic</h2>
-<p>
-  Once \(V_\beta\) is well-defined, one may study the relation between its minima and the low-lying eigenfunctions of \(H_\beta\). If \(F_\beta\) has sharp local maxima at times \(T_1,\dots,T_m\), then \(V_\beta\) has corresponding local minima near those points.
-</p>
+  <h2>8. Operatorikehys</h2>
+  <p>Pitkän aikavälin teoreettinen kehys on edelleen operaattori</p>
+  <div class="eq">$$H=-i\frac{d}{dt}+\frac12+A_0(t).$$</div>
+  <p>Jos joskus saataisiin trace-identiteetti</p>
+  <div class="eq">$$\mathrm{Tr}(e^{-itH})=\sum_{p,k}\log p\,\delta(t-k\log p),$$</div>
+  <p>niin Laplace-muunnoksen kautta se voisi johtaa spektrisen yhteyden zetaan. Tätä kohtaa ei kuitenkaan pidä sekoittaa nykyiseen numeeriseen vaiheeseen. Tällä hetkellä trace-identiteetti on yhä avoin teoreettinen kuilu eikä tätä dokumenttia tule lukea väitteenä, että se olisi ratkaistu.</p>
 
-<div class="thm">
-  <div class="label">Localization Principle (heuristic).</div>
-  <p>
-    If \(V_\beta\) has separated nondegenerate local minima, then the low-lying eigenfunctions of \(H_\beta\) localize near those minima.
-  </p>
-</div>
+  <h2>9. Nykyinen tutkimusohjelma</h2>
+  <h3>Priority 1 — Lock the residual architecture</h3>
+  <p>Backbone pidetään kiinteänä ja kaikki työ kohdistetaan residuaaliin \(\delta_n=\gamma_n-\gamma_n^{(0)}\). Tavoite on ensin varmistaa, että residuaali todella käyttäytyy S(T)-skaalassa eikä sisällä piilevää systemaattista driftia.</p>
+  <h3>Priority 2 — Direct comparison to external S(T) data</h3>
+  <p>Seuraava ei-triviaali testi on verrata skaalattua residuaalia suoraan ulkoiseen, riippumattomaan S(γₙ)-dataan. Count-derived suure ei riitä, koska se on käytännössä sama linearisointi uudessa kirjoitusasussa.</p>
+  <h3>Priority 3 — New prime-side candidates only at correction level</h3>
+  <p>Uusia A₀- ja STFT-rakenteita kannattaa testata vain sillä ehdolla, että niitä verrataan <em>residuaaliin</em>, ei koko nollajonoon. Käytännössä prime-side candidate pitäisi pyrkiä approksimoimaan jotakin S(T)-tyyppistä, ei backboneia.</p>
+  <h3>Priority 4 — Analytic refinement, but only correctly</h3>
+  <p>Stirling-refinement ja muut korkeammat asymptoottiset termit voivat olla tärkeitä, mutta niitä ei saa ottaa käyttöön ennen kuin inversio, tavoite-ehto ja konventiot on johdettu oikein. Yksi kokeiltu refinointi johti selvästi huonompaan numeriikkaan, joten tämä kohta vaatii huolellisen analyyttisen derivoinnin eikä pelkkää koodikokeilua.</p>
 
-<p>
-  In VOT language, this suggests the first principled spectral reading:
-</p>
-<ul>
-  <li>0-points of the purity geometry create local maxima of \(F_\beta\),</li>
-  <li>these become local minima of \(V_\beta\),</li>
-  <li>the corresponding operator develops localized spectral structure near those regions.</li>
-</ul>
-
-<h2>10. Relation to the Original Operator Ansatz</h2>
-<p>
-  The older VOT layer used the arithmetic field directly in a first-order operator:
-</p>
-<div class="eq">
-H = -i\frac{d}{dt} + \frac12 + A_0(t).
-</div>
-<p>
-  The present rigorous spectral core should be viewed as an effective reduction:
-</p>
-<div class="eq">
-A_0
-\;\Longrightarrow\;
-\mathcal P(T,\omega)
-\;\Longrightarrow\;
-F_\beta(T)
-\;\Longrightarrow\;
-V_\beta(T)
-\;\Longrightarrow\;
-H_\beta.
-</div>
-
-<div class="remark">
-  <div class="label">Interpretive bridge.</div>
-  <p>
-    The first-order operator \(H\) belongs to the original programmatic layer. The second-order effective operator \(H_\beta\) belongs to the current rigorous spectral layer. The two are not yet proven equivalent. The present strategy is to formalize \(H_\beta\) first, and only afterwards attempt to reconstruct it from the original arithmetic operator framework.
-  </p>
-</div>
-
-<h2>11. The Current Mathematical Gap</h2>
-<div class="warning">
-  <div class="label">Decisive unresolved point.</div>
-  <p>
-    The VOT program does not yet prove that the spectrum of \(H_\beta\) reproduces the imaginary parts \(\gamma_n\) of the nontrivial zeta zeros. Nor does it yet prove that the effective potential \(V_\beta\) constructed from the purity surface is canonically forced by the arithmetic data.
-  </p>
-</div>
-
-<p>
-  Thus the present state is:
-</p>
-<ul>
-  <li><strong>rigorous:</strong> construction of a self-adjoint effective operator from a smooth bounded VOT potential;</li>
-  <li><strong>heuristic:</strong> interpretation of its spectral minima/localization as zero-generating structures;</li>
-  <li><strong>open:</strong> exact spectral identification with \(\{\gamma_n\}\).</li>
-</ul>
-
-<h2>12. Strongest Current Theorem Candidate</h2>
-<div class="thm">
-  <div class="label">Core Theorem Candidate.</div>
-  <p>
-    Let \(I,\Omega\) be compact intervals and let \(\mathcal P\in C^2(I\times\Omega)\) be real-valued. Define
-  </p>
-  <div class="eq">
-  F_\beta(T)=\frac{1}{\beta}\log\int_\Omega e^{\beta \mathcal P(T,\omega)}\,d\omega,
-  \qquad
-  V_\beta(T)=-F_\beta(T),
+  <h2>10. Tämän työn vahvin nykyinen väite</h2>
+  <div class="box">
+    <div class="eq">$$\boxed{\gamma_n=\gamma_n^{(0)}+\delta_n,\qquad \gamma_n^{(0)}=\frac{2\pi(n-11/8)}{W((n-11/8)/e)},\qquad \delta_n \text{ on pieni ja }S(T)\text{-skaalassa oskilloiva.}}$$</div>
   </div>
-  <p>
-    and
-  </p>
-  <div class="eq">
-  H_\beta=-\frac{d^2}{dT^2}+V_\beta(T)
+  <p>Tämä on nykyinen konsistentti tilannekuva. Se ei ole RH-todistus, mutta se on selvä, falsifioitava tutkimusohjelma: ensin lukitaan asymptoottinen scaffold, sitten erotetaan residuaalin todellinen lähde, ja vasta sen jälkeen palataan prime-signaalien ja operaattoriteorian syvempään rooliin.</p>
+
+  <div class="foot">
+    <p><strong>Status.</strong> Tämä dokumentti on tutkimusohjelman siivottu preprint-luonnos, ei todistus. Kaikki numeeriset väitteet tässä tekstissä on rajattu niihin tuloksiin, jotka olivat keskenään johdonmukaisia tämän session laskuissa. Teoreettiset väitteet ovat eksplisiittisesti ohjelmallisia tai konjektuurisia, ellei toisin mainita.</p>
   </div>
-  <p>
-    on \(L^2(I)\) with Dirichlet boundary conditions. Then \(H_\beta\) is a self-adjoint operator with purely discrete spectrum.
-  </p>
-</div>
-
-<p>
-  This theorem does not solve RH, but it gives a precise and rigorous operator-theoretic nucleus inside the VOT program.
-</p>
-
-<h2>13. Next Rigorous Steps</h2>
-<ol>
-  <li>Prove a localization theorem in the language of VOT shells and 0-points.</li>
-  <li>Show that the minima structure of \(V_\beta\) is stable under admissible perturbations of \(\mathcal P\).</li>
-  <li>Formulate a spectral approximation statement of the form
-    <div class="eq">\lambda_n(H_\beta)\approx \gamma_n.</div>
-  </li>
-  <li>Attempt a reconstruction link from the original operator
-    <div class="eq">H = -i\frac{d}{dt}+\frac12+A_0(t)</div>
-    to the effective operator \(H_\beta\).</li>
-</ol>
-
-<h2>14. Conclusion</h2>
-<p>
-  The rigorous spectral core of VOT is now clear at the first level: the program can canonically produce a self-adjoint effective operator from a smooth bounded purity-derived potential. This is the first nontrivial formal core that survives independently of the more heuristic empirical architecture.
-</p>
-<p>
-  The central unsolved problem remains the true RH step:
-</p>
-<div class="eq">
-\mathrm{spec}(H_\beta) \stackrel{?}{=} \{\gamma_n\}.
-</div>
-<p>
-  Until that step is proved, VOT remains a serious but incomplete research program rather than a proof.
-</p>
-
-<div class="foot">
-  <p><strong>Status.</strong> Formal core draft. Suitable as a theorem-oriented appendix or technical section inside the larger VOT preprint.</p>
-</div>
-
-</div>
 </body>
 </html>
